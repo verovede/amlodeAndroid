@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/pantallaCarga">
+
+    <fragment
+        android:id="@+id/pantallaCarga"
+        android:name="fragments.PantallaCarga"
+        android:label="fragment_fragments1"
+        tools:layout="@layout/fragment_fragments1" >
+        <action
+            android:id="@+id/action_pantallaCarga_to_pantallaUbicacion"
+            app:destination="@id/pantallaUbicacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaUbicacion"
+        android:name="fragments.PantallaUbicacion"
+        android:label="fragment_pantalla_ubicacion"
+        tools:layout="@layout/fragment_pantalla_ubicacion" />
+</navigation>
