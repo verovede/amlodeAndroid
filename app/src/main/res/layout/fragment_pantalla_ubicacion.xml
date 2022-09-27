@@ -17,8 +17,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/intersecci_n_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="-59dp" />
+        tools:layout_editor_absoluteX="-23dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/activa_tu_u"
@@ -29,64 +29,55 @@
         android:layout_marginStart="61dp"
         android:layout_marginTop="113dp"
         android:layout_marginEnd="62dp"
-        android:layout_marginBottom="496dp"
         android:fontFamily="@font/roboto_black"
         android:text="ACTIVA TU UBICACION"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/amlode_nece"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/amlode_nece"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="195dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="205dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="273dp"
         android:gravity="center_horizontal|center_vertical"
         android:padding="5sp"
         android:text="AMLODE necesita acceder a tu ubicación para localizar el equipo DEA más cercano"
         android:textSize="33sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/activa_tu_u"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="186dp"
-        android:layout_marginTop="393dp"
-        android:layout_marginEnd="186dp"
-        android:layout_marginBottom="151dp"
+        android:layout_marginBottom="72dp"
         android:src="@drawable/vector"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/amlode_nece" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="543dp"
-        android:layout_marginBottom="93dp"
+        android:layout_marginBottom="68dp"
+        android:backgroundTintMode="add"
         android:text="PERMITIR"
+        android:textColor="#F1F1F1"
+        app:backgroundTint="#DD0C0C"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,6 +7,6 @@ import com.example.amlode.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.fragment_pantalla_ubicacion)
     }
 }
