@@ -12,11 +12,19 @@
         tools:layout="@layout/fragment_fragments1" >
         <action
             android:id="@+id/action_pantallaCarga_to_pantallaUbicacion"
-            app:destination="@id/pantallaUbicacion" />
+            app:destination="@id/pantallaUbicacion"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_enter_anim"
+            app:popUpTo="@id/pantallaUbicacion" />
     </fragment>
     <fragment
         android:id="@+id/pantallaUbicacion"
         android:name="fragments.PantallaUbicacion"
         android:label="fragment_pantalla_ubicacion"
         tools:layout="@layout/fragment_pantalla_ubicacion" />
+    <fragment
+        android:id="@+id/fragment_primeros_aux"
+        android:name="fragments.fragment_primeros_aux"
+        android:label="fragment_primeros_aux"
+        tools:layout="@layout/fragment_primeros_aux" />
 </navigation>
