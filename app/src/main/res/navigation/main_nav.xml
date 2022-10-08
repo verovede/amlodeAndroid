@@ -3,28 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/pantallaCarga">
+    app:startDestination="@id/mapFragment">
 
     <fragment
-        android:id="@+id/pantallaCarga"
-        android:name="fragments.PantallaCarga"
-        android:label="fragment_fragments1"
-        tools:layout="@layout/fragment_fragments1" >
-        <action
-            android:id="@+id/action_pantallaCarga_to_pantallaUbicacion"
-            app:destination="@id/pantallaUbicacion"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_enter_anim"
-            app:popUpTo="@id/pantallaUbicacion" />
-    </fragment>
+        android:id="@+id/mainFragment"
+        android:name="com.example.amlode.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
     <fragment
-        android:id="@+id/pantallaUbicacion"
-        android:name="fragments.PantallaUbicacion"
-        android:label="fragment_pantalla_ubicacion"
-        tools:layout="@layout/fragment_pantalla_ubicacion" />
+        android:id="@+id/deaFragment"
+        android:name="com.example.amlode.fragments.DeaFragment"
+        android:label="fragment_dea"
+        tools:layout="@layout/fragment_dea" />
     <fragment
-        android:id="@+id/fragment_primeros_aux"
-        android:name="fragments.fragment_primeros_aux"
-        android:label="fragment_primeros_aux"
-        tools:layout="@layout/fragment_primeros_aux" />
+        android:id="@+id/userFragment"
+        android:name="com.example.amlode.fragments.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/aidFragment"
+        android:name="com.example.amlode.fragments.AidFragment"
+        android:label="fragment_aid"
+        tools:layout="@layout/fragment_aid" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.amlode.fragments.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

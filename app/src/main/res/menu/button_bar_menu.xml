@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/aidFragment"
+        android:icon="@drawable/icono_aid"
+        android:title="Aid" />
+    <item
+        android:id="@+id/deaFragment"
+        android:icon="@drawable/icono_dea"
+        android:title="Dea" />
+    <item
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/icono_casa"
+        android:title="Main" />
+    <item
+        android:id="@+id/userFragment"
+        android:icon="@drawable/icono_user"
+        android:title="User" />
+    <item
+        android:icon="@drawable/icono_telefono"
+        android:title="telefono"/>
+</menu>

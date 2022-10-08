@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name">AMLODE</string>
+    <string name="app_name">Amlode</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="fragmento_main_text">PERMITIONS FRAGMENT</string>
+    <string name="fragmento_user_text">FRAGMENTO USER</string>
+    <string name="fragmento_dea_text">FRAGMENTO DEA</string>
+    <string name="fragmento_map_text">FRAGMENTO MAP</string>
+    <string name="primeros_auxilios">"Frente a un ataque cardiaco: \n\n
+1. Ayudá a la persona se siente, descanse y trate de mantener la calma. \n\n
+2. Aflojale cualquier prenda de vestir ajustada. \n\n
+3. Preguntale si toma medicamentos para el dolor torácico, como nitroglicerina por una enfermedad cardíaca conocida y ayúdele a tomarlos. \n\n
+4. Si el dolor no desaparece rápidamente con el reposo o al cabo de 3 minutos después de haber tomado la nitroglicerina, solicita ayuda médica urgente. \n\n
+5. Si la persona está inconsciente y no reacciona, llame al 911 o al número local de emergencias, luego inicie la RCP. \n\n
+6. Si un bebé o un niño está inconsciente y no reacciona, administre la RCP durante 1 minuto, luego llame al 911 o al número local de emergencias."</string>
+    <string name="permiso">AMLODE necesita acceder a tu ubicación para localizar el equipo DEA más cercano</string>
+    <string name="titulo_permiso">ACTIVA TU UBICACION</string>
+    <string name="permitir_btn">PERMITIR</string>
+    <string name="titulo_aid_fragment">Primeros Auxilios</string>
+    <string name="llamar_aid_fragment">Llamar al 911</string>
+    <string name="volver">Volver</string>
 </resources>

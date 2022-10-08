@@ -2,23 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F9FF"
-    tools:context="fragments.PantallaUbicacion">
+    tools:context=".fragments.PermitionsFragment">
 
 
     <View
-        android:id="@+id/intersecci_"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/interseccion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/intersecci_n_2"
-        tools:layout_editor_absoluteX="-23dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:background="@drawable/interseccion"
+        android:backgroundTint="@color/lightWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/activa_tu_u"
@@ -30,7 +31,7 @@
         android:layout_marginTop="113dp"
         android:layout_marginEnd="62dp"
         android:fontFamily="@font/roboto_black"
-        android:text="ACTIVA TU UBICACION"
+        android:text="@string/titulo_permiso"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/amlode_nece"
@@ -49,7 +50,7 @@
         android:layout_marginBottom="336dp"
         android:gravity="center_horizontal|center_vertical"
         android:padding="5sp"
-        android:text="AMLODE necesita acceder a tu ubicación para localizar el equipo DEA más cercano"
+        android:text="@string/permiso"
         android:textColor="#000000"
         android:textSize="33sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,13 +59,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_permitions_accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="68dp"
         android:height="20dp"
         android:backgroundTintMode="add"
-        android:text="PERMITIR"
+        android:text="@string/permitir_btn"
         android:textColor="#F1F1F1"
         app:backgroundTint="#DD0C0C"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,6 +83,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
