@@ -1,5 +1,4 @@
 package com.example.amlode.fragments
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.amlode.R
+import android.Manifest.permission.CALL_PHONE
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
 
 class phoneFragment : Fragment() {
     lateinit var viewFragment: View
@@ -28,6 +30,7 @@ class phoneFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel: 911")))
+        startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel: 911")));
     }
+
 }
