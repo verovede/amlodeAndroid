@@ -30,4 +30,9 @@
         android:name="com.example.amlode.fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/phone"
+        android:name="com.example.amlode.fragments.phoneFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_phone"/>
 </navigation>
