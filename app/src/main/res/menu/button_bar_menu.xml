@@ -19,6 +19,7 @@
         android:icon="@drawable/icono_user"
         android:title="User" />
     <item
+        android:id="@+id/phone"
         android:icon="@drawable/icono_telefono"
-        android:title="telefono"/>
+        android:title="telefono" />
 </menu>
