@@ -1,0 +1,109 @@
+version: "3.5"
+services:
+  orion:
+    image: fiware/orion
+    hostname: orion
+    container_name: fiware-orion-DEA
+    depends_on:
+      - mongo-db
+    ports:
+      - "1026:1026"
+    command: -dbhost mongo-db -logLevel DEBUG -noCache -corsOrigin __ALL
+
+  mongo-db:
+    image: mongo:3.6
+    hostname: mongo-db
+    container_name: db-mongo-DEA
+    ports:
+      - "27017:27017"
+    command: --bind_ip_all --smallfiles
+    volumes:
+      - ./data/mongo-db:/data
+      - ./data/mongo-volume:/data/db
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - ${ADMIN_MONGO_PORT:-1234}:1234
+    environment:
+      - HOST=0.0.0.0
+
+  mysql-db:
+    restart: always
+    image: mysql:5.7
+    hostname: mysql-db
+    container_name: db-mysql
+    networks:
+      default:
+        ipv4_address: 172.18.1.6
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_ROOT_HOST=172.18.1.5"
+    volumes:
+      - mysql-db:/var/lib/mysql
+
+  keyrock:
+    image: fiware/idm:7.8.1
+    container_name: fiware-keyrock
+    hostname: keyrock
+    networks:
+      default:
+        ipv4_address: 172.18.1.5
+    depends_on:
+      - mysql-db
+    ports:
+      - "3000:3000"
+      - "443:443"
+    environment:
+      - DEBUG=idm:*
+      - IDM_DB_HOST=mysql-db
+      - IDM_HOST=http://localhost:3000
+      - IDM_PORT=3000
+      - IDM_DB_PASS=secret
+      - IDM_DB_USER=root
+      - IDM_ADMIN_USER=admin
+      - IDM_ADMIN_EMAIL=admin@test.com
+      - IDM_ADMIN_PASS=1234
+      - IDM_CORS_ENABLED=true
+
+  cygnus:
+    image: fiware/cygnus-ngsi
+    hostname: cygnus
+    container_name: fiware-cygnus
+    networks:
+      - default
+    ports:
+      - 5055:5055
+      - 5080:5080
+    environment:
+      - CYGNUS_MYSQL_SERVICE_PORT=5055
+      - CYGNUS_MYSQL_HOST=mysql
+      - CYGNUS_MYSQL_PORT=3306
+      - CYGNUS_MYSQL_USER=root
+      - CYGNUS_MYSQL_PASS= admin123
+      - CYGNUS_MYSQL_BATCH_SIZE=1
+      - CYGNUS_LOG_LEVEL=INFO
+      - CYGNUS_SERVICE_PORT=5055
+      - CYGNUS_API_PORT=5080
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.8.3
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD= admin123
+      - MYSQL_DATABASE= Amlode
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - 5004:3306
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.18.1.0/24
+volumes:
+  mysql-db: ~
