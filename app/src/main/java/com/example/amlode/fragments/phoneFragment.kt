@@ -17,8 +17,7 @@ class phoneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        viewFragment = inflater.inflate(R.layout.fragment_aid, container, false)
-
+        viewFragment = inflater.inflate(R.layout.fragment_phone, container, false)
         return viewFragment
     }
 
@@ -28,6 +27,7 @@ class phoneFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel: 911")))
+        startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel: 911")));
     }
+
 }
