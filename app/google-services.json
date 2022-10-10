@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "733158263647",
+    "project_id": "amlode-fefe1",
+    "storage_bucket": "amlode-fefe1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733158263647:android:923371e7641959d2ab44ea",
+        "android_client_info": {
+          "package_name": "com.example.amlode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733158263647-bp9aau386aes0lfbcnoeuqqg49epf73l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtkiTdSJpxCfDhXv2NX0yyC34AdlAZEJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733158263647-bp9aau386aes0lfbcnoeuqqg49epf73l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

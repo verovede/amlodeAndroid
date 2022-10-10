@@ -19,7 +19,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit  var map: GoogleMap
     lateinit var viewFragment : View
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +48,4 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             4000, null
         )
     }
-
-
 }

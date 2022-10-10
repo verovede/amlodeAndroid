@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.Navigation
 import com.example.amlode.R
-import org.w3c.dom.Text
 import android.net.Uri;
 
 
