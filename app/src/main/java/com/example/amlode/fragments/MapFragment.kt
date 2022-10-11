@@ -1,6 +1,8 @@
 package com.example.amlode.fragments
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
@@ -9,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.core.content.res.ResourcesCompat
 import com.example.amlode.DeaMarker
 import com.example.amlode.R
@@ -68,14 +71,19 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             map.addMarker(MarkerOptions().position(deaMarker).title(deaName).icon(icon))
         }
 
-        //usar en emulador fakeGps
+        val coordinates = LatLng(-34.483249083657384, -58.494628912880726)
+        val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
+        map.addMarker(marker)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
+
+        /*usar en emulador fakeGps
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
                 val coordinates = LatLng(location!!.latitude, location!!.longitude)
                 val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
                 map.addMarker(marker)
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
-            }
+            }*/
     }
 
     private fun getIcon(): BitmapDescriptor {
