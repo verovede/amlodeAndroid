@@ -13,9 +13,7 @@ import android.net.Uri;
 
 class AidFragment : Fragment() {
     lateinit var viewFragment: View
-    lateinit var buttonBack: Button
     lateinit var buttonCall: Button
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +21,6 @@ class AidFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         viewFragment = inflater.inflate(R.layout.fragment_aid, container, false)
-        buttonBack = viewFragment.findViewById<Button>(R.id.button_primeros_aux)
         buttonCall = viewFragment.findViewById<Button>(R.id.button2)
 
         return viewFragment
