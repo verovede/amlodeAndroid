@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.example.amlode.DeaMarker
 import com.example.amlode.R
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,31 +27,20 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit  var map: GoogleMap
-    lateinit var viewFragment : View
+    private lateinit var viewFragment : View
     private val markers = mutableListOf<DeaMarker>()
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         createFragment()
         return viewFragment
     }
 
- /*
-   suspend fun initializeVariable() {
-       val bundle = arguments
-       val userLocation = Location("")
-       val long = bundle?.getDouble("userLatitude")
-       val lat = bundle?.getDouble("userLongitude")
-       if (long != null && lat != null) {
-           userLocation.latitude = long
-           userLocation.longitude = lat
-       }
-       Log.w("USER LOCATION", "$userLocation")
-   }
-*/
     private fun createFragment() {
         val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -77,10 +68,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             map.addMarker(MarkerOptions().position(deaMarker).title(deaName).icon(icon))
         }
 
-        val coordinates = LatLng(-34.50052169061559, -58.49526015111359)
-        val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
-        map.addMarker(marker)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14f))
+        //usar en emulador fakeGps
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                val coordinates = LatLng(location!!.latitude, location!!.longitude)
+                val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
+                map.addMarker(marker)
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
+            }
     }
 
     private fun getIcon(): BitmapDescriptor {

@@ -22,7 +22,6 @@ open class MainActivity : AppCompatActivity(){
 
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFragment: NavHostFragment
-    private val userLocation = Location("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,37 +30,17 @@ open class MainActivity : AppCompatActivity(){
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         bottomNavView = findViewById(R.id.button_bar_menu)
         requestLocationPermission()
-
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
     }
 
-    /*
-    private fun bundleData() {
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val myFragment = MapFragment()
-
-        val bundle = Bundle()
-        bundle.putDouble("userLongitude", userLocation.longitude)
-        bundle.putDouble("userLatitude", userLocation.latitude)
-        myFragment.arguments = bundle
-        fragmentTransaction.add(R.id.frameLayout, myFragment).commit()
-    }
-*/
-
     private fun requestLocationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                getUserLocation()
-            } else {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 val permissionArray = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
                 requestPermissions(permissionArray, LOCATION_PERMISSION_REQUEST_CODE)
             }
-        } else {
-            getUserLocation()
         }
     }
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onRequestPermissionsResult(
@@ -72,12 +51,8 @@ open class MainActivity : AppCompatActivity(){
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                getUserLocation()
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 showLocationPermissionRationleDialog()
-            } else {
-                finish()
             }
         }
     }
@@ -85,8 +60,8 @@ open class MainActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.M)
     private fun showLocationPermissionRationleDialog() {
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Necesitas permiso de Ubicacion")
-            .setMessage("Acepta el permiso!")
+            .setTitle("Necesitas permiso de Ubicacion para usar Amlode")
+            .setMessage("Su ubicación es necesaria para brindarle una información certera")
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 requestPermissions(
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -98,20 +73,6 @@ open class MainActivity : AppCompatActivity(){
         dialog.show()
     }
 
-    //para emular gps bajarse en emulador Fake GPS location
-    //configurar en opciones de desarrollador gps de prueba
-    //todo fijarse la forma de enviar al fragment
-    @SuppressLint("MissingPermission")
-    private fun getUserLocation() {
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            if (location != null) {
-                userLocation.latitude = location.latitude
-                userLocation.longitude = location.longitude
-                //bundleData()
-            }
-        }
-    }
 }
 
 
