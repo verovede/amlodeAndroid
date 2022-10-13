@@ -32,8 +32,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="google_maps_key" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,12 +44,14 @@
         </activity>
 
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginScreen"
-            android:exported="true"></activity>
-
+            android:exported="true" />
         <activity
             android:name=".DeaActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
