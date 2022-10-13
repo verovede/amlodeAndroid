@@ -6,16 +6,18 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import com.example.amlode.DeaMarker
+import androidx.fragment.app.Fragment
 import com.example.amlode.LoginScreen
+import com.example.amlode.MainActivity
 import com.example.amlode.R
+import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,11 +29,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit  var map: GoogleMap
+    private lateinit var markers: MutableList<DeaMarker>
     private lateinit var viewFragment : View
-    private val markers = mutableListOf<DeaMarker>()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var buttonDea: ImageButton
 
@@ -41,6 +44,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        markers = (activity as MainActivity).getMarkers()
         createFragment()
         return viewFragment
     }
@@ -61,29 +65,29 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        createMarker()
+        setMarkers()
         findUser()
     }
 
-    //Crea marcadores de Prueba
-    private fun createMarker() {
-        //Todo reemplazar por API Service
-        createFakeMarkers()
+    //TODO cambiar de acuerdo a los datamodels de fiware cuando este corriendo en la nube
+    //setea markadores recibidos de API
+    fun setMarkers(){
         val icon = getIcon()
+        Log.w("MARCADORES RECIBIDOS", "DESDE API")
         for(dea in markers){
+            //imprime datos de https://dea-get.herokuapp.com/api/deas/
+            Log.w("dea ${dea!!.id}", "${dea.lat} ${dea.long}")
             val deaMarker = LatLng(dea.lat, dea.long)
-            val deaName = dea.id
-            val deaLocation = Location("")
-            deaLocation.latitude = dea.lat
-            deaLocation.longitude = dea.long
+            val deaName = "Dea ${dea.id}"
             map.addMarker(MarkerOptions().position(deaMarker).title(deaName).icon(icon))
         }
     }
 
-    //Busca usuario en el mapa y lo ubica. Asume permisos
+    //TODO checkear el uso de permisos correctamente
+
+    //Busca usuario en el mapa y lo ubica. Asume permisos. Usar GPS
     @SuppressLint("MissingPermission")
     private fun findUser(){
-        //usar en emulador de Gps
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
                 val coordinates = LatLng(location!!.latitude, location!!.longitude)
@@ -102,15 +106,5 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         drawable?.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
-
-
-    private fun createFakeMarkers() {
-        markers.add(DeaMarker("Dea 1", -34.5009741,-58.4972707))
-        markers.add(DeaMarker("Dea 2", -34.489249083657384, -58.49677717308122))
-        markers.add(DeaMarker("Dea 3", -34.48330932945249, -58.498628912880726))
-        markers.add(DeaMarker("Dea 4", -34.48025894970691, -58.5020493713585))
-        markers.add(DeaMarker("Dea 5", -34.48855368656378, -58.49459053094968))
-    }
-
 
 }
