@@ -20,9 +20,4 @@ class MainFragment : Fragment() {
         return viewFragment
     }
 
-
-    override fun onStart() {
-        super.onStart()
-    }
-
 }

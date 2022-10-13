@@ -1,12 +1,10 @@
 package com.example.amlode
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.NavHostFragment
@@ -19,7 +17,6 @@ open class MainActivity : AppCompatActivity(){
 
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFragment: NavHostFragment
-    private lateinit var buttonDea: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +44,6 @@ open class MainActivity : AppCompatActivity(){
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 showLocationPermissionRationleDialog()
@@ -71,14 +67,6 @@ open class MainActivity : AppCompatActivity(){
         dialog.show()
     }
 
-    override fun onStart() {
-        super.onStart()
-        buttonDea = findViewById(R.id.button_dea)
-        buttonDea.setOnClickListener(){
-            val intent = Intent(this, LoginScreen::class.java)
-            startActivity(intent)
-        }
-    }
 }
 
 
