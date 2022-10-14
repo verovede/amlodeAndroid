@@ -1,7 +1,6 @@
 package com.example.amlode.fragments
 
 import android.Manifest
-import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -31,7 +30,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -41,6 +43,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
     private lateinit  var map: GoogleMap
     private lateinit var markers: MutableList<DeaMarker>
+    private lateinit var userLocation: Location
     private lateinit var viewFragment : View
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var buttonDea: ImageButton
@@ -51,6 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
+        userLocation = Location("")
         markers = (activity as MainActivity).getMarkers()
         createFragment()
         return viewFragment
@@ -73,40 +77,54 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         enableLocation()
-        setMarkers()
-        setUserLocation()
+
     }
 
     //TODO cambiar de acuerdo a los datamodels de fiware cuando este corriendo en la nube
     //setea markadores recibidos de API
     private fun setMarkers(){
         val icon = getIcon()
+
         Log.w("MARCADORES RECIBIDOS", "DESDE API")
+        Log.w("User Location", "$userLocation")
+
+        val loc = Location("")
         for(dea in markers){
             //imprime datos de https://dea-get.herokuapp.com/api/deas/
             Log.w("dea ${dea!!.id}", "${dea.lat} ${dea.long}")
-            val deaMarker = LatLng(dea.lat, dea.long)
+
+            loc.longitude = dea.long
+            loc.latitude = dea.lat
+
             val deaName = "Dea ${dea.id}"
-            map.addMarker(MarkerOptions().position(deaMarker).title(deaName).icon(icon))
+            val distance = loc.distanceTo(userLocation)
+            val coordinate = LatLng(dea.lat, dea.long)
+            val meters = String.format("%.2f", (distance / 1000 ))
+            val markerOptions = MarkerOptions().position(coordinate).title(deaName)
+                .snippet("Distancia: $meters km")
+                .icon(icon)
+            map.addMarker(markerOptions)
         }
     }
 
-    //Busca usuario en el mapa y lo ubica. Asume permisos. Usar GPS
+    //Busca usuario en el mapa y lo ubica. Usar GPS
+    @SuppressLint("MissingPermission")
     private fun setUserLocation(){
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location : Location? ->
                     if(location != null){
-                        Log.w("ACA", "$location")
-                        val coordinates = LatLng(location!!.latitude, location!!.longitude)
+                        Log.w("LOCATION", "$location")
+                        userLocation.latitude = location.latitude
+                        userLocation.longitude = location.longitude
+                        var coordinates = LatLng(location.latitude, location.longitude)
                         //val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
                         //map.addMarker(marker)
                         map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
-
+                        setMarkers()
                     }
                 }
     }
 
-    //@SuppressLint("MissingPermission")
     //función que pasa a bitmap las imagenes para el marcador de maps
     private fun getIcon(): BitmapDescriptor {
         val drawable = ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.marker, null)
@@ -122,10 +140,17 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun enableLocation(){
         if(!::map.isInitialized) return
         if(isLocationPermissionGranted()){
-            map.isMyLocationEnabled = true
+            init()
         }else{
             requestLocationPermission()
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun init(){
+        map.isMyLocationEnabled = true
+        setUserLocation()
+
     }
 
     private fun requestLocationPermission(){
@@ -144,11 +169,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ) {
         when(requestCode){
             LOCATION_PERMISSION_REQUEST_CODE -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                map.isMyLocationEnabled = true
+                init()
             }else{
                 Toast.makeText(requireContext(), "Acepta los Permisos", Toast.LENGTH_SHORT).show()
             }
             else -> {}
         }
     }
+
+
 }

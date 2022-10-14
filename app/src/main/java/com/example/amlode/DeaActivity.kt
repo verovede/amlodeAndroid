@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.maps.model.Marker
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_dea.*
+
 
 class DeaActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
