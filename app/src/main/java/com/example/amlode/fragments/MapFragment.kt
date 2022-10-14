@@ -1,10 +1,14 @@
 package com.example.amlode.fragments
 
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +16,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.amlode.LoginScreen
@@ -24,14 +31,14 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
+    companion object{
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+    }
     private lateinit  var map: GoogleMap
     private lateinit var markers: MutableList<DeaMarker>
     private lateinit var viewFragment : View
@@ -43,7 +50,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         markers = (activity as MainActivity).getMarkers()
         createFragment()
         return viewFragment
@@ -65,13 +72,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        enableLocation()
         setMarkers()
-        findUser()
+        setUserLocation()
     }
 
     //TODO cambiar de acuerdo a los datamodels de fiware cuando este corriendo en la nube
     //setea markadores recibidos de API
-    fun setMarkers(){
+    private fun setMarkers(){
         val icon = getIcon()
         Log.w("MARCADORES RECIBIDOS", "DESDE API")
         for(dea in markers){
@@ -83,20 +91,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    //TODO checkear el uso de permisos correctamente
-
     //Busca usuario en el mapa y lo ubica. Asume permisos. Usar GPS
-    @SuppressLint("MissingPermission")
-    private fun findUser(){
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                val coordinates = LatLng(location!!.latitude, location!!.longitude)
-                val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
-                map.addMarker(marker)
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
-            }
+    private fun setUserLocation(){
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    if(location != null){
+                        Log.w("ACA", "$location")
+                        val coordinates = LatLng(location!!.latitude, location!!.longitude)
+                        //val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
+                        //map.addMarker(marker)
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
+
+                    }
+                }
     }
 
+    //@SuppressLint("MissingPermission")
     //función que pasa a bitmap las imagenes para el marcador de maps
     private fun getIcon(): BitmapDescriptor {
         val drawable = ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.marker, null)
@@ -107,4 +117,38 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
+    private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    private fun enableLocation(){
+        if(!::map.isInitialized) return
+        if(isLocationPermissionGranted()){
+            map.isMyLocationEnabled = true
+        }else{
+            requestLocationPermission()
+        }
+    }
+
+    private fun requestLocationPermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
+            Toast.makeText(requireContext(), "Acepta los Permisos", Toast.LENGTH_SHORT).show()
+        }else{
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            LOCATION_PERMISSION_REQUEST_CODE -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                map.isMyLocationEnabled = true
+            }else{
+                Toast.makeText(requireContext(), "Acepta los Permisos", Toast.LENGTH_SHORT).show()
+            }
+            else -> {}
+        }
+    }
 }

@@ -1,9 +1,13 @@
 package com.example.amlode
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
@@ -14,13 +18,18 @@ import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
 
+    companion object{
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+    }
     private val markers = ArrayList<DeaMarker>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_splash)
-        intent = Intent(this, MainActivity::class.java)
         callApi()
+        intent = Intent(this, MainActivity::class.java)
     }
+
 
     //llama api realiza un intent hacia main (que pide permisos y carga hacia maps)
     private fun callApi() {
@@ -53,4 +62,5 @@ class SplashActivity : AppCompatActivity() {
             }
         })
     }
+
 }
