@@ -7,9 +7,9 @@
         android:icon="@drawable/icono_aid"
         android:title="Aid" />
     <item
-        android:id="@+id/deaFragment"
+        android:id="@+id/InfoFragment"
         android:icon="@drawable/icono_dea"
-        android:title="Dea" />
+        android:title="Info" />
     <item
         android:id="@+id/mapFragment"
         android:icon="@drawable/icono_casa"
