@@ -3,7 +3,6 @@ package com.example.amlode
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -70,8 +69,10 @@ class LoginScreen : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                SavedPreference.setEmail(this, account.email.toString())
-                SavedPreference.setUsername(this, account.displayName.toString())
+                SavedPreference.setUsername(this, "Nombre y apellido: "
+                        + account.displayName.toString())
+                SavedPreference.setEmail(this, "Email: " + account.email.toString())
+                SavedPreference.setPhoto(account.photoUrl)
                 val intent = Intent(this, DeaActivity::class.java)
                 startActivity(intent)
                 finish()
