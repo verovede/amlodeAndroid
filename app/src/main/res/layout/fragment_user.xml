@@ -15,9 +15,10 @@
         android:layout_height="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintVertical_bias="0.37" />
 
     <TextView
         android:id="@+id/email"
@@ -25,10 +26,10 @@
         android:layout_height="89dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.559" />
 
     <ImageView
         android:id="@+id/photo"
@@ -48,9 +49,18 @@
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867" />
+        app:layout_constraintVertical_bias="0.734" />
+
+    <Button
+        android:id="@+id/logout_user"
+        android:layout_width="332dp"
+        android:layout_height="46dp"
+        android:backgroundTint="#DD0C0C"
+        android:text="Salir"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="624dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
