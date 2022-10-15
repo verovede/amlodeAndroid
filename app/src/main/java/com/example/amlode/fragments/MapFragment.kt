@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.example.amlode.CustomInfoWindowAdapter
 import com.example.amlode.LoginScreen
 import com.example.amlode.MainActivity
 import com.example.amlode.R
@@ -28,12 +29,14 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.util.Map
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -51,7 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         userLocation = Location("")
@@ -63,7 +66,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
-        buttonDea.setOnClickListener(){
+        buttonDea.setOnClickListener{
             val intent = Intent(requireActivity(), LoginScreen::class.java)
             startActivity(intent)
         }
@@ -84,6 +87,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     //setea markadores recibidos de API
     private fun setMarkers(){
         val icon = getIcon()
+        map.setInfoWindowAdapter(CustomInfoWindowAdapter(requireContext()))
 
         Log.w("MARCADORES RECIBIDOS", "DESDE API")
         Log.w("User Location", "$userLocation")
@@ -91,7 +95,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val loc = Location("")
         for(dea in markers){
             //imprime datos de https://dea-get.herokuapp.com/api/deas/
-            Log.w("dea ${dea!!.id}", "${dea.lat} ${dea.long}")
+            Log.w("dea ${dea.id}", "${dea.lat} ${dea.long}")
 
             loc.longitude = dea.long
             loc.latitude = dea.lat
@@ -116,7 +120,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         Log.w("LOCATION", "$location")
                         userLocation.latitude = location.latitude
                         userLocation.longitude = location.longitude
-                        var coordinates = LatLng(location.latitude, location.longitude)
+                        val coordinates = LatLng(location.latitude, location.longitude)
                         //val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
                         //map.addMarker(marker)
                         map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
