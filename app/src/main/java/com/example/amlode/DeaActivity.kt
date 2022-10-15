@@ -8,13 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.maps.model.Marker
 import com.google.firebase.auth.FirebaseAuth
-
 
 class DeaActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_google: Button
+
 
     private val auth by lazy {
         FirebaseAuth.getInstance()
@@ -29,13 +28,15 @@ class DeaActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
         logout_google = findViewById(R.id.logout_google)
+
 
         logout_google.setOnClickListener {
             mGoogleSignInClient.signOut().addOnCompleteListener {
                 val intent = Intent(this, MainActivity::class.java)
                 Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show()
+                SavedPreference.setEmail(this, "")
+                SavedPreference.setUsername(this, "")
                 startActivity(intent)
                 finish()
             }
