@@ -28,44 +28,6 @@ services:
     environment:
       - HOST=0.0.0.0
 
-  mysql-db:
-    restart: always
-    image: mysql:5.7
-    hostname: mysql-db
-    container_name: db-mysql
-    networks:
-      default:
-        ipv4_address: 172.18.1.6
-    environment:
-      - "MYSQL_ROOT_PASSWORD=secret"
-      - "MYSQL_ROOT_HOST=172.18.1.5"
-    volumes:
-      - mysql-db:/var/lib/mysql
-
-  keyrock:
-    image: fiware/idm:7.8.1
-    container_name: fiware-keyrock
-    hostname: keyrock
-    networks:
-      default:
-        ipv4_address: 172.18.1.5
-    depends_on:
-      - mysql-db
-    ports:
-      - "3000:3000"
-      - "443:443"
-    environment:
-      - DEBUG=idm:*
-      - IDM_DB_HOST=mysql-db
-      - IDM_HOST=http://localhost:3000
-      - IDM_PORT=3000
-      - IDM_DB_PASS=secret
-      - IDM_DB_USER=root
-      - IDM_ADMIN_USER=admin
-      - IDM_ADMIN_EMAIL=admin@test.com
-      - IDM_ADMIN_PASS=1234
-      - IDM_CORS_ENABLED=true
-
   cygnus:
     image: fiware/cygnus-ngsi
     hostname: cygnus
@@ -93,8 +55,8 @@ services:
     container_name: mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD= admin123
-      - MYSQL_DATABASE= Amlode
+      - MYSQL_ROOT_PASSWORD=admin123
+      - MYSQL_DATABASE=Amlode
     volumes:
       - ./data/mysql:/var/lib/mysql
     ports:
@@ -106,4 +68,4 @@ networks:
       config:
         - subnet: 172.18.1.0/24
 volumes:
-  mysql-db: ~
+  mysql: ~
