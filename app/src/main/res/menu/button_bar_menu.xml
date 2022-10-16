@@ -7,7 +7,7 @@
         android:icon="@drawable/icono_aid"
         android:title="Aid" />
     <item
-        android:id="@+id/InfoFragment"
+        android:id="@+id/infoFragment"
         android:icon="@drawable/icono_dea"
         android:title="Info" />
     <item

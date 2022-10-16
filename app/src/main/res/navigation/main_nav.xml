@@ -11,10 +11,10 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
-        android:id="@+id/deaFragment"
-        android:name="com.example.amlode.DeaActivity"
-        android:label="fragment_dea"
-        tools:layout="@layout/activity_dea" />
+        android:id="@+id/infoFragment"
+        android:name="com.example.amlode.fragments.infoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.amlode.fragments.UserFragment"
