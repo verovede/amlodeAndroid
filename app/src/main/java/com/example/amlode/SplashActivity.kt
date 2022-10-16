@@ -1,13 +1,9 @@
 package com.example.amlode
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
@@ -42,10 +38,10 @@ class SplashActivity : AppCompatActivity() {
                 response: Response<ArrayList<DeaResponse?>?>
             ) {
                 val response: ArrayList<DeaResponse?>? = (response.body())!!
-
+                Log.w("SPLASH", "$response")
                 if (response != null) {
                     for(dea in response){
-                        markers.add(DeaMarker(dea!!.id,dea!!.coordinate.latitude, dea!!.coordinate.longitude))
+                        markers.add(DeaMarker(dea!!.id, dea!!.latitude.value, dea!!.longitude.value, dea!!.date.value))
                     }
                     val bundle = Bundle()
                     bundle.putParcelableArrayList("response", markers)

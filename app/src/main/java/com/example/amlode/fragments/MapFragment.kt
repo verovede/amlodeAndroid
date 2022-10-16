@@ -29,7 +29,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptor
@@ -91,9 +90,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         Log.w("MARCADORES RECIBIDOS", "DESDE API")
         Log.w("User Location", "$userLocation")
-
+        Log.w("Map", "$markers")
         val loc = Location("")
-        for(dea in markers){
+       for(dea in markers){
             //imprime datos de https://dea-get.herokuapp.com/api/deas/
             Log.w("dea ${dea.id}", "${dea.lat} ${dea.long}")
 
@@ -105,7 +104,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val coordinate = LatLng(dea.lat, dea.long)
             val meters = String.format("%.2f", (distance / 1000 ))
             val markerOptions = MarkerOptions().position(coordinate).title(deaName)
-                .snippet("Distancia: $meters km")
+                .snippet("${dea.info} - /n Distancia: $meters km ")
                 .icon(icon)
             map.addMarker(markerOptions)
         }
