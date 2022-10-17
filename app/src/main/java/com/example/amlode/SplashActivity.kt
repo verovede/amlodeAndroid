@@ -29,8 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
     //llama api realiza un intent hacia main (que pide permisos y carga hacia maps)
     private fun callApi() {
-        val baseURL = "https://dea-get.herokuapp.com/api/deas/"
-        val api = APIService.create(baseURL)
+        val api = APIService.create()
 
         api.getDeas()?.enqueue(object : Callback<ArrayList<DeaResponse?>?> {
             override fun onResponse(

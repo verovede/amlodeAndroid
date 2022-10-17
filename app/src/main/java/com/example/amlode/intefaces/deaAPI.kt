@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 //"v2/entities?type=dea"
 interface deaAPI {
-    @GET(".")
+    @GET("v2/entities?type=dea")
     fun getDeas(
     ): Call<ArrayList<DeaResponse?>?>?
 

@@ -9,9 +9,10 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 class APIService {
 
     companion object {
-        private const val BASE_URL = ""
+        //cambiar por IP de la maquina
+        private const val BASE_URL = "http://192.168.0.102:1026/"
 
-        fun create( baseURL: String): deaAPI {
+        fun create(): deaAPI {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
 
             val client = OkHttpClient.Builder()
@@ -19,7 +20,7 @@ class APIService {
                 .build()
 
             return Retrofit.Builder()
-                .baseUrl(baseURL)
+                .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

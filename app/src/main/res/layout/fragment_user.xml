@@ -9,6 +9,23 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <ImageButton
+        android:id="@+id/loggin_user"
+        android:layout_width="84dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="545dp"
+        android:background="@null"
+        android:src="@drawable/ic_login"
+        app:layout_constraintBottom_toTopOf="@+id/logout_user"
+        app:layout_constraintEnd_toStartOf="@+id/photo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/username"
         android:layout_width="323dp"
@@ -37,10 +54,10 @@
         android:layout_height="184dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.031"
+        app:layout_constraintVertical_bias="0.029"
         tools:src="@tools:sample/avatars" />
 
     <TextView
