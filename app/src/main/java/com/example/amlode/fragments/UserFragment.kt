@@ -26,6 +26,10 @@ class UserFragment : Fragment() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: Button
 
+    companion object{
+        lateinit var prefs: SavedPreference
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +39,7 @@ class UserFragment : Fragment() {
         email = viewFragment.findViewById(R.id.email)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
+        prefs = SavedPreference(requireContext())
 
         if(GoogleSignIn.getLastSignedInAccount(requireContext()) != null){
             Log.i("PASA POR if","")
@@ -53,9 +58,9 @@ class UserFragment : Fragment() {
     }
 
     private fun showData(){
-        username.text = SavedPreference.getSharedPreference(context)?.getString("username","")
-        email.text = SavedPreference.getSharedPreference(context)?.getString("email","")
-        Picasso.with(context).load(SavedPreference.getPhoto()).into(photo)
+        username.text = prefs.getUsername()
+        email.text = prefs.getEmail()
+        Picasso.with(context).load(prefs.getPhoto()).into(photo)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -66,8 +71,8 @@ class UserFragment : Fragment() {
             mGoogleSignInClient.signOut().addOnCompleteListener {
                 val intent = Intent(context, MainActivity::class.java)
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
-                SavedPreference.setEmail(requireContext(), "")
-                SavedPreference.setUsername(requireContext(), "")
+                prefs.setUsername("")
+                prefs.setEmail("")
                 startActivity(intent)
             }
         }

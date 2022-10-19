@@ -65,9 +65,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
             if(GoogleSignIn.getLastSignedInAccount(requireContext()) != null) {
+                Log.i("PASA POR if MAP FRAGMENT","")
                 val intent = Intent(requireActivity(), DeaActivity::class.java)
                 startActivity(intent)
             }else{
+                Log.i("PASA POR ELSE MAP FRAGMENT","")
                 val intent = Intent(context, LoginScreen::class.java)
                 startActivity(intent)
             }
