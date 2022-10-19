@@ -2,7 +2,6 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,23 +11,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.amlode.*
+import com.example.amlode.MainActivity.Companion.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.squareup.picasso.Picasso
 
 class UserFragment : Fragment() {
-
     private lateinit var viewFragment : View
     lateinit var username: TextView
     lateinit var email: TextView
     lateinit var photo: ImageView
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: Button
-
-    companion object{
-        lateinit var prefs: SavedPreference
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +34,10 @@ class UserFragment : Fragment() {
         email = viewFragment.findViewById(R.id.email)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
-        prefs = SavedPreference(requireContext())
 
-        if(GoogleSignIn.getLastSignedInAccount(requireContext()) != null){
-            Log.i("PASA POR if","")
+        if(!prefs.getUsername().isEmpty()){
             showData()
-
         }else{
-            Log.i("PASA POR ELSE","")
             val intent = Intent(context, LoginScreen::class.java)
             startActivity(intent)
         }

@@ -16,7 +16,6 @@ class phoneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewFragment = inflater.inflate(R.layout.fragment_phone, container, false)
         return viewFragment
     }

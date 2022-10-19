@@ -33,7 +33,6 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.Map
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -64,12 +63,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
-            if(GoogleSignIn.getLastSignedInAccount(requireContext()) != null) {
-                Log.i("PASA POR if MAP FRAGMENT","")
+            if(!MainActivity.prefs.getUsername().isEmpty()) {
                 val intent = Intent(requireActivity(), DeaActivity::class.java)
                 startActivity(intent)
             }else{
-                Log.i("PASA POR ELSE MAP FRAGMENT","")
                 val intent = Intent(context, LoginScreen::class.java)
                 startActivity(intent)
             }

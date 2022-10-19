@@ -3,9 +3,9 @@ package com.example.amlode
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.amlode.MainActivity.Companion.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,17 +23,11 @@ class LoginScreen : AppCompatActivity() {
     private val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
 
-    companion object{
-        lateinit var prefs: SavedPreference
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         FirebaseApp.initializeApp(this)
-        prefs = SavedPreference(this)
-
-        Log.i("PASA POR ON CREATE","")
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -77,7 +71,6 @@ class LoginScreen : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.i("PASA POR UPDATE","")
                 prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
                 prefs.setEmail("Email: " + account.email.toString())
                 prefs.savePhoto(account.photoUrl)
@@ -91,7 +84,6 @@ class LoginScreen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            Log.i("PASA POR ON START", GoogleSignIn.getLastSignedInAccount(this).toString())
             startActivity(Intent(this, SplashActivity::class.java))
             finish()
         }

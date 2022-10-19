@@ -13,7 +13,6 @@ class PermitionsFragment : Fragment() {
 
     lateinit var viewFragment : View
     lateinit var btnAccept: Button
-    //lateinit var btnDecline: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +21,6 @@ class PermitionsFragment : Fragment() {
 
         viewFragment = inflater.inflate(R.layout.fragment_permitions, container, false)
         btnAccept = viewFragment.findViewById(R.id.button_permitions_accept)
-        //btnDecline = viewFragment.findViewById(R.id.button_main_decline)
 
         return viewFragment
     }
