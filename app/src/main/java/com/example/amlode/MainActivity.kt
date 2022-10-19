@@ -33,6 +33,7 @@ open class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.i("PASA POR MAIN","")
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         bottomNavView = findViewById(R.id.button_bar_menu)

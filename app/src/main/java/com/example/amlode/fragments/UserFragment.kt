@@ -2,6 +2,7 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,14 +10,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
-import com.example.amlode.MainActivity
-import com.example.amlode.R
-import com.example.amlode.SavedPreference
+import com.example.amlode.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import kotlin.math.log
 
 class UserFragment : Fragment() {
 
@@ -36,29 +38,36 @@ class UserFragment : Fragment() {
         email = viewFragment.findViewById(R.id.email)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
+
+        if(GoogleSignIn.getLastSignedInAccount(requireContext()) != null){
+            Log.i("PASA POR if","")
+            username.text = SavedPreference.getSharedPreference(context)?.getString("username","")
+            email.text = SavedPreference.getSharedPreference(context)?.getString("email","")
+            Picasso.with(context).load(SavedPreference.getPhoto()).into(photo)
+
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+            logout_user.setOnClickListener {
+                mGoogleSignInClient.signOut().addOnCompleteListener {
+                    val intent = Intent(context, MainActivity::class.java)
+                    Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
+                    SavedPreference.setEmail(requireContext(), "")
+                    SavedPreference.setUsername(requireContext(), "")
+                    startActivity(intent)
+                }
+            }
+        }else{
+            Log.i("PASA POR ELSE","")
+            val intent = Intent(context, LoginScreen::class.java)
+            startActivity(intent)
+        }
         return viewFragment
     }
 
     override fun onStart() {
         super.onStart()
-        username.text = SavedPreference.getSharedPreference(context)?.getString("username","")
-        email.text = SavedPreference.getSharedPreference(context)?.getString("email","")
-        Picasso.with(context).load(SavedPreference.getPhoto()).into(photo)
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        logout_user.setOnClickListener {
-            mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent = Intent(context, MainActivity::class.java)
-                Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
-                SavedPreference.setEmail(requireContext(), "")
-                SavedPreference.setUsername(requireContext(), "")
-                startActivity(intent)
-            }
-        }
     }
 }

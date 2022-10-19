@@ -3,8 +3,10 @@ package com.example.amlode
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.amlode.fragments.MapFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -15,6 +17,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_auth.*
+import java.util.jar.Manifest
 
 class LoginScreen : AppCompatActivity() {
 
@@ -69,11 +72,12 @@ class LoginScreen : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                Log.i("PASA POR UPDATE","")
                 SavedPreference.setUsername(this, "Nombre y apellido: "
                         + account.displayName.toString())
                 SavedPreference.setEmail(this, "Email: " + account.email.toString())
                 SavedPreference.setPhoto(account.photoUrl)
-                val intent = Intent(this, DeaActivity::class.java)
+                val intent = Intent(this, SplashActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -83,7 +87,8 @@ class LoginScreen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            startActivity(Intent(this, DeaActivity::class.java))
+            Log.i("PASA POR ON START", GoogleSignIn.getLastSignedInAccount(this).toString())
+            startActivity(Intent(this, SplashActivity::class.java))
             finish()
         }
     }
