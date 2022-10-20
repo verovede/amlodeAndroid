@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -64,8 +65,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
             if(!MainActivity.prefs.getUsername().isEmpty()) {
-                val intent = Intent(requireActivity(), DeaActivity::class.java)
-                startActivity(intent)
+                val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
+                viewFragment.findNavController().navigate(action)
             }else{
                 val intent = Intent(context, LoginScreen::class.java)
                 startActivity(intent)

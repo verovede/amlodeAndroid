@@ -29,7 +29,11 @@
         android:id="@+id/mapFragment"
         android:name="com.example.amlode.fragments.MapFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_deaFragment"
+            app:destination="@id/deaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/phone"
         android:name="com.example.amlode.fragments.phoneFragment"
@@ -40,5 +44,10 @@
         android:name="com.example.amlode.LoginScreen"
         android:label="fragment_auth"
         tools:layout="@layout/activity_auth" />
+    <fragment
+        android:id="@+id/deaFragment"
+        android:name="com.example.amlode.fragments.DeaFragment"
+        android:label="fragment_dea"
+        tools:layout="@layout/fragment_dea" />
 
 </navigation>
