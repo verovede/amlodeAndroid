@@ -4,6 +4,7 @@
     android:id="@+id/constraints"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:padding="15sp"
     android:background="@color/card">
 
     <TextView

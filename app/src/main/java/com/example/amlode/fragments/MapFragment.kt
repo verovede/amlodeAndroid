@@ -81,8 +81,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        Log.w("Map", "$markers")
         enableLocation()
-
     }
 
     //TODO cambiar de acuerdo a los datamodels de fiware cuando este corriendo en la nube
@@ -105,7 +105,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val distance = loc.distanceTo(userLocation)
             val coordinate = LatLng(dea.lat, dea.long)
             val meters = String.format("%.2f", (distance / 1000 ))
-            val markerOptions = MarkerOptions().position(coordinate).title(dea.owner)
+            val markerOptions = MarkerOptions().position(coordinate)
+                .title(dea.owner)
                 .snippet("\n${dea.info}\n\nDistancia: $meters km ")
                 .icon(icon)
             map.addMarker(markerOptions)
