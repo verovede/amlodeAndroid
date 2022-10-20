@@ -40,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
                 Log.w("SPLASH", "$response")
                 if (response != null) {
                     for(dea in response){
-                        markers.add(DeaMarker(dea!!.id, dea!!.latitude.value, dea!!.longitude.value, dea!!.date.value))
+                        markers.add(DeaMarker(dea!!.id, dea!!.coordinates.value[0], dea!!.coordinates.value[1], dea!!.owner.value, dea!!.info.value, dea!!.device.value ))
                     }
                     val bundle = Bundle()
                     bundle.putParcelableArrayList("response", markers)

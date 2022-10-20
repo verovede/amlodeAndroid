@@ -102,12 +102,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             loc.longitude = dea.long
             loc.latitude = dea.lat
 
-            val deaName = "Dea ${dea.id}"
             val distance = loc.distanceTo(userLocation)
             val coordinate = LatLng(dea.lat, dea.long)
             val meters = String.format("%.2f", (distance / 1000 ))
-            val markerOptions = MarkerOptions().position(coordinate).title(deaName)
-                .snippet("${dea.info}\n\nDistancia: $meters km ")
+            val markerOptions = MarkerOptions().position(coordinate).title(dea.owner)
+                .snippet("\n${dea.info}\n\nDistancia: $meters km ")
                 .icon(icon)
             map.addMarker(markerOptions)
         }

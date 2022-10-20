@@ -10,8 +10,8 @@ class APIService {
 
     companion object {
 
-        //cambiar por IP de la maquina
-        private const val BASE_URL = "http://192.168.100.64:1026/"
+        //cambiar por IP de la maquina "http://192.168.100.64:1026/"
+        private const val BASE_URL = "https://dea-get.herokuapp.com/api/deas/"
 
         fun create(): deaAPI {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
