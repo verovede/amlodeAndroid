@@ -7,126 +7,114 @@
     android:layout_height="match_parent"
     tools:context=".fragments.infoFragment">
 
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/icono_red_aid"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/editTextTextPersonName3"
-        android:layout_width="164dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_black"
         android:minHeight="48dp"
-        android:text="Preguntas Frecuentes"
+        android:text="@string/title_section_info"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <TextView
         android:id="@+id/editTextTextPersonName4"
-        android:layout_width="158dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="360dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/roboto_black"
         android:minHeight="48dp"
-        android:text="¿Cómo funciona? "
+        android:text="@string/title_work_info"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_black"
-        android:text="Encontrar DEA mas cercano"
+        android:text="@string/title_find_DEA_info"
         android:textColor="#DD0C0C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="Agregar DEA"
-        android:textColor="#DD0C0C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="Bases y Condiciones"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
         android:id="@+id/textView6"
-        android:layout_width="289dp"
-        android:layout_height="53dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Activando la ubicación en tu disposito vas a poder visualizar el dispositivo DEA más cercano del lugar en el que te encuentres
-"
+        android:text="@string/text_find_DEA_info"
+        android:fontFamily="@font/roboto"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
+        android:id="@+id/textView7"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/title_add_info"
+        android:textColor="#DD0C0C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
         android:id="@+id/textView8"
-        android:layout_width="296dp"
-        android:layout_height="75dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google.
-Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail."
+        android:text="@string/text_add_info"
+        android:fontFamily="@font/roboto"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="308dp"
-        android:layout_height="254dp"
-        android:layout_marginTop="8dp"
-        android:text="Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisiblidad del uso de la aplicación.
-
-Me comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.
-
-Reconozco actuar como colaborador voluntario en situaciones de emergencia siempre y cuando tenga conocimiento en reanimación cardiopulmonar (RCP) y esté capacitado para utilizar un Dispositivo DEA."
+        android:id="@+id/textView9"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/title_bases_info"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/text_bases_info"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 

@@ -31,4 +31,18 @@
     <string name="prefs_file">com.firebase.PREFERENCE_FILE_KEY</string>
     <string name="title_activity_maps">MapsActivity</string>
 
+    <!-- Strings related to info screen -->
+    <string name="title_section_info">Preguntas Frecuentes</string>
+    <string name="title_work_info">¿Cómo funciona?</string>
+    <string name="title_find_DEA_info">Encontrar DEA mas cercano</string>
+    <string name="text_find_DEA_info">Activando la ubicación en tu disposito vas a poder visualizar el dispositivo DEA más cercano del lugar en el que te encuentres</string>
+    <string name="title_add_info">Agregar DEA</string>
+    <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google. \n\n
+Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</string>
+    <string name="title_bases_info">Bases y Condiciones</string>
+    <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisiblidad del uso de la aplicación.\n\n
+
+Me comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.\n\n
+
+Reconozco actuar como colaborador voluntario en situaciones de emergencia siempre y cuando tenga conocimiento en reanimación cardiopulmonar (RCP) y esté capacitado para utilizar un Dispositivo DEA.</string>
 </resources>
