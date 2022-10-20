@@ -9,8 +9,9 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 class APIService {
 
     companion object {
+
         //cambiar por IP de la maquina
-        private const val BASE_URL = "http://192.168.0.102:1026/"
+        private const val BASE_URL = "http://192.168.100.64:1026/"
 
         fun create(): deaAPI {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }

@@ -9,7 +9,6 @@ import com.example.amlode.R
 
 
 class MainFragment : Fragment() {
-
     lateinit var viewFragment : View
 
     override fun onCreateView(

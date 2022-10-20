@@ -49,7 +49,7 @@
             android:name=".LoginScreen"
             android:exported="true" />
         <activity
-            android:name=".DeaActivity"
+            android:name=".fragments.DeaFragment"
             android:exported="true" />
     </application>
 

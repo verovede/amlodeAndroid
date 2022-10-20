@@ -20,11 +20,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.example.amlode.CustomInfoWindowAdapter
-import com.example.amlode.LoginScreen
-import com.example.amlode.MainActivity
-import com.example.amlode.R
+import androidx.navigation.findNavController
+import com.example.amlode.*
 import com.example.amlode.entities.DeaMarker
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -35,7 +34,6 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.util.Map
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -66,8 +64,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
-            val intent = Intent(requireActivity(), LoginScreen::class.java)
-            startActivity(intent)
+            if(!MainActivity.prefs.getUsername().isEmpty()) {
+                val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
+                viewFragment.findNavController().navigate(action)
+            }else{
+                val intent = Intent(context, LoginScreen::class.java)
+                startActivity(intent)
+            }
         }
     }
 

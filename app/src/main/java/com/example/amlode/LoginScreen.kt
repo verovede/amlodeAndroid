@@ -5,6 +5,7 @@ import android.view.View
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.amlode.MainActivity.Companion.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -21,6 +22,7 @@ class LoginScreen : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +71,10 @@ class LoginScreen : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                SavedPreference.setUsername(this, "Nombre y apellido: "
-                        + account.displayName.toString())
-                SavedPreference.setEmail(this, "Email: " + account.email.toString())
-                SavedPreference.setPhoto(account.photoUrl)
-                val intent = Intent(this, DeaActivity::class.java)
+                prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
+                prefs.setEmail("Email: " + account.email.toString())
+                prefs.savePhoto(account.photoUrl)
+                val intent = Intent(this, SplashActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -83,7 +84,7 @@ class LoginScreen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            startActivity(Intent(this, DeaActivity::class.java))
+            startActivity(Intent(this, SplashActivity::class.java))
             finish()
         }
     }

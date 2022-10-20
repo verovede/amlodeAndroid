@@ -1,32 +1,26 @@
 package com.example.amlode.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import com.example.amlode.R
 
-
-class PermitionsFragment : Fragment() {
-
+class DeaFragment : Fragment() {
+    lateinit var add_dea: Button
     lateinit var viewFragment : View
-    lateinit var btnAccept: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        viewFragment = inflater.inflate(R.layout.fragment_permitions, container, false)
-        btnAccept = viewFragment.findViewById(R.id.button_permitions_accept)
-
+        viewFragment = inflater.inflate(R.layout.fragment_dea, container, false)
         return viewFragment
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
-
 }

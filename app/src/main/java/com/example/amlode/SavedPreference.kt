@@ -1,64 +1,39 @@
 package com.example.amlode
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
-import android.preference.PreferenceManager
 
-object SavedPreference {
+class SavedPreference(val context: Context) {
 
-    const val EMAIL = "email"
-    const val USERNAME = "username"
-    var PHOTO= "photo"
+    private val SHARED_NAME = "amlode"
+    private val EMAIL = "email"
+    private val USERNAME = "username"
+    private var PHOTO= "photo"
 
-    fun getSharedPreference(ctx: Context?): SharedPreferences? {
-        return PreferenceManager.getDefaultSharedPreferences(ctx)
+    val storage = context.getSharedPreferences(SHARED_NAME,0)
+
+    fun setEmail(email: String){
+        storage.edit().putString(EMAIL,email).apply()
     }
 
-    private fun editor(context: Context, const:String, string: String){
-        getSharedPreference(
-            context
-        )?.edit()?.putString(const,string)?.apply()
+    fun getEmail():String{
+        return  storage.getString(EMAIL, "")!!
     }
 
-    private fun editorPhoto(context: Context, const:String, uri: Uri?){
-        getSharedPreference(
-            context
-        )?.edit()?.putString(const,uri.toString())?.apply()
+    fun setUsername(username:String){
+        storage.edit().putString(USERNAME,username).apply()
     }
 
-    fun getEmail(context: Context)= getSharedPreference(
-        context
-    )?.getString(EMAIL,"")
-
-    fun setEmail(context: Context, email: String){
-        editor(
-            context,
-            EMAIL,
-            email
-        )
+    fun getUsername():String{
+        return storage.getString(USERNAME, "")!!
     }
-
-    fun setUsername(context: Context, username:String){
-        editor(
-            context,
-            USERNAME,
-            username
-        )
-    }
-
-    fun getUsername(context: Context) = getSharedPreference(
-        context
-    )?.getString(USERNAME,"")
-
 
     fun getPhoto(): String {
-        return this.PHOTO
+        return storage.getString(PHOTO, "")!!
     }
 
-
-    fun setPhoto(photo: Uri?){
-        PHOTO = photo.toString()
+    fun savePhoto(photo: Uri?){
+        storage.edit().putString(PHOTO, photo.toString()).apply()
     }
 }
 
