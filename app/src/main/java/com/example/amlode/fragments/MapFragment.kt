@@ -22,8 +22,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
+import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.entities.DeaMarker
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -64,7 +64,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
-            if(!MainActivity.prefs.getUsername().isEmpty()) {
+            if(!prefs.getUsername().isEmpty()) {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{
