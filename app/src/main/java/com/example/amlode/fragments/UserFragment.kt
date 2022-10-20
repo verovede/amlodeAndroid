@@ -52,6 +52,7 @@ class UserFragment : Fragment() {
         username.text = prefs.getUsername()
         email.text = prefs.getEmail()
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
+        logout_user.setVisibility(View.VISIBLE);
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
