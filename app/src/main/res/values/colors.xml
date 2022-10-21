@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightWhite">#F0EADC</color>
     <color name="card">#edf2f4</color>
+
+    <color name="colorDea">#DD0C0C</color>
+
 </resources>

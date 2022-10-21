@@ -37,7 +37,7 @@
     <string name="title_find_DEA_info">Encontrar DEA mas cercano</string>
     <string name="text_find_DEA_info">Activando la ubicación en tu disposito vas a poder visualizar el dispositivo DEA más cercano del lugar en el que te encuentres</string>
     <string name="title_add_info">Agregar DEA</string>
-    <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google. \n\n
+    <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google.\n\n
 Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</string>
     <string name="title_bases_info">Bases y Condiciones</string>
     <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisiblidad del uso de la aplicación.\n\n
