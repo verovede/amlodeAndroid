@@ -35,12 +35,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-
 class MapFragment : Fragment(), OnMapReadyCallback {
-
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
+
     private lateinit  var map: GoogleMap
     private lateinit var markers: MutableList<DeaMarker>
     private lateinit var userLocation: Location
