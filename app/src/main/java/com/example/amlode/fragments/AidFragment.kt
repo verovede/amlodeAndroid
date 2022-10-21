@@ -20,7 +20,7 @@ class AidFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_aid, container, false)
-        buttonCall = viewFragment.findViewById<Button>(R.id.button2)
+        buttonCall = viewFragment.findViewById<Button>(R.id.buttonAid)
 
         return viewFragment
     }
