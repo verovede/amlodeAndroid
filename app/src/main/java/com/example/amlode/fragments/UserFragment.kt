@@ -22,7 +22,7 @@ class UserFragment : Fragment() {
     lateinit var photo: ImageView
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var logout_user: Button
+    lateinit var logout_user: ImageButton
     lateinit var spinner: ProgressBar
 
     override fun onCreateView(

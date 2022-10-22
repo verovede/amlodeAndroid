@@ -6,6 +6,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.amlode.MainActivity.Companion.prefs
+import com.example.amlode.fragments.DateFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -74,7 +75,7 @@ class LoginScreen : AppCompatActivity() {
                 prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
                 prefs.setEmail("Email: " + account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-                val intent = Intent(this, SplashActivity::class.java)
+                val intent = Intent(this, DateFragment::class.java)
                 startActivity(intent)
                 finish()
             }
