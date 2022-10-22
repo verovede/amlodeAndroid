@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:src="@drawable/icono_user"
-        android:tint="@color/colorDea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/title_aid"
@@ -141,7 +140,6 @@
         android:layout_height="30dp"
         android:backgroundTint="@color/white"
         android:src="@drawable/logout"
-        android:tint="@color/colorDea"
         app:layout_constraintBottom_toBottomOf="@+id/title_aid"
         app:layout_constraintEnd_toEndOf="@+id/title_aid"
         app:layout_constraintTop_toTopOf="@+id/title_aid" />
