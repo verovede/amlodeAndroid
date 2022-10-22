@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.amlode.databinding.ActivityMainBinding
 import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -16,7 +17,7 @@ open class MainActivity : AppCompatActivity(){
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var markers : MutableList<DeaMarker>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
+    private lateinit var binding: ActivityMainBinding
     companion object{
         lateinit var prefs: SavedPreference
     }
@@ -25,10 +26,13 @@ open class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         prefs = SavedPreference(this)
 
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-        bottomNavView = findViewById(R.id.button_bar_menu)
+        bottomNavView = binding.buttonBarMenu
         markers = intent.getParcelableArrayListExtra<DeaMarker>("response") as ArrayList<DeaMarker>
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
     }

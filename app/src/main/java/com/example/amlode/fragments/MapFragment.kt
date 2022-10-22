@@ -22,7 +22,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
-import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -62,15 +61,24 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
+
         buttonDea.setOnClickListener{
+            /*
             if(!prefs.getUsername().isEmpty()) {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{
                 val intent = Intent(context, LoginScreen::class.java)
                 startActivity(intent)
-            }
+            }*/
+
+            val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
+            viewFragment.findNavController().navigate(action)
         }
+    }
+
+    fun getLatitude(): Double {
+        return userLocation.latitude
     }
 
     private fun createFragment() {
