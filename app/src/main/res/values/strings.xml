@@ -45,4 +45,13 @@ Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</strin
 Me comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.\n\n
 
 Reconozco actuar como colaborador voluntario en situaciones de emergencia siempre y cuando tenga conocimiento en reanimación cardiopulmonar (RCP) y esté capacitado para utilizar un Dispositivo DEA.</string>
+
+    <!-- Strings related to user screen -->
+    <string name="title_section_user">Perfil de Usuario</string>
+    <string name="title_section_user_points">Total de puntos acumulados</string>
+    <string name="bot_section_user_dea">Ver mis DEAS</string>
+
+
+
+
 </resources>
