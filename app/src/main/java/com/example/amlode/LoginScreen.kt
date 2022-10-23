@@ -75,7 +75,7 @@ class LoginScreen : AppCompatActivity() {
                 prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
                 prefs.setEmail("Email: " + account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-                val intent = Intent(this, DateFragment::class.java)
+                val intent = Intent(this, SplashActivity::class.java)
                 startActivity(intent)
                 finish()
             }

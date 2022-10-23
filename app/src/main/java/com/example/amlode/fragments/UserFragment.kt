@@ -36,7 +36,7 @@ class UserFragment : Fragment() {
             showData()
         }else{
             spinner.setVisibility(View.VISIBLE);
-            val intent = Intent(context, LoginScreen::class.java)
+            val intent = Intent(context, DateFragment::class.java)
             startActivity(intent)
         }
         return viewFragment

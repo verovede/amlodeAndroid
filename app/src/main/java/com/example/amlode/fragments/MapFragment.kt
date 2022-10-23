@@ -67,7 +67,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{
-                val intent = Intent(context, LoginScreen::class.java)
+                val intent = Intent(context, DateFragment::class.java)
                 startActivity(intent)
             }
         }
