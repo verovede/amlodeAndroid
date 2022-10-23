@@ -40,7 +40,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 
-    private lateinit  var map: GoogleMap
+    private lateinit var map: GoogleMap
     private lateinit var markers: MutableList<DeaMarker>
     private lateinit var userLocation: Location
     private lateinit var viewFragment : View
@@ -98,7 +98,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Log.w("User Location", "$userLocation")
         Log.w("Map", "$markers")
         val loc = Location("")
-       for(dea in markers){
+
+        for(dea in markers){
             //imprime datos de https://dea-get.herokuapp.com/api/deas/
             Log.w("dea ${dea.id}", "${dea.lat} ${dea.long}")
 
@@ -110,7 +111,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val meters = String.format("%.2f", (distance / 1000 ))
             val markerOptions = MarkerOptions().position(coordinate)
                 .title(dea.owner)
-                .snippet("\n${dea.info}\n\nDistancia: $meters km ")
                 .icon(icon)
             map.addMarker(markerOptions)
         }
@@ -126,8 +126,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         userLocation.latitude = location.latitude
                         userLocation.longitude = location.longitude
                         val coordinates = LatLng(location.latitude, location.longitude)
-                        //val marker = MarkerOptions().position(coordinates).title("Ud. está aquí")
-                        //map.addMarker(marker)
                         map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
                         setMarkers()
                     }
