@@ -2,7 +2,6 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,6 @@ class DateFragment : AppCompatActivity() {
         register_user = findViewById(R.id.register_user)
         date = findViewById(R.id.date)
 
-        Log.d("ON CREATE", date.toString())
         date.setOnClickListener{
             showDatePickerDialog()
         }

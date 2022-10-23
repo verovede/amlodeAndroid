@@ -53,7 +53,6 @@ class UserFragment : Fragment() {
         date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
         logout_user.setVisibility(View.VISIBLE)
-
         logOut()
     }
 
@@ -80,6 +79,7 @@ class UserFragment : Fragment() {
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
                 prefs.setUsername("")
                 prefs.setEmail("")
+                prefs.saveDate("")
                 startActivity(intent)
             }
         }
