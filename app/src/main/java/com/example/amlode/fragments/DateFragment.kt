@@ -10,7 +10,6 @@ import com.example.amlode.DatePickerFragment
 import com.example.amlode.LoginScreen
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
-import com.example.amlode.SplashActivity
 import java.time.LocalDate
 import java.time.Period
 
