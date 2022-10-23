@@ -50,7 +50,7 @@ class UserFragment : Fragment() {
         username.text = prefs.getUsername()
         email.text = prefs.getEmail()
         points.setText("Puntos acumulados: ")
-        date.setText("Fecha de nacimiento: ")
+        date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
         logout_user.setVisibility(View.VISIBLE)
 

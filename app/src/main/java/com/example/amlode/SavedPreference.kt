@@ -2,6 +2,7 @@ package com.example.amlode
 
 import android.content.Context
 import android.net.Uri
+import android.widget.EditText
 import java.util.*
 
 class SavedPreference(val context: Context) {
@@ -10,6 +11,7 @@ class SavedPreference(val context: Context) {
     private val EMAIL = "email"
     private val USERNAME = "username"
     private var PHOTO= "photo"
+    private var DATE= "date"
 
     val storage = context.getSharedPreferences(SHARED_NAME,0)
 
@@ -35,6 +37,14 @@ class SavedPreference(val context: Context) {
 
     fun savePhoto(photo: Uri?){
         storage.edit().putString(PHOTO, photo.toString()).apply()
+    }
+
+    fun getDate(): String {
+        return storage.getString(DATE, "")!!
+    }
+
+    fun saveDate(date: String){
+        storage.edit().putString(DATE, date).apply()
     }
 }
 
