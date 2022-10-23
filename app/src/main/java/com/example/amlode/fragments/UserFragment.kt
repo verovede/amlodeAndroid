@@ -22,7 +22,7 @@ class UserFragment : Fragment() {
     lateinit var photo: ImageView
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var logout_user: Button
+    lateinit var logout_user: ImageButton
     lateinit var spinner: ProgressBar
 
     override fun onCreateView(
@@ -50,10 +50,9 @@ class UserFragment : Fragment() {
         username.text = prefs.getUsername()
         email.text = prefs.getEmail()
         points.setText("Puntos acumulados: ")
-        date.setText("Fecha de nacimiento: ")
+        date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
         logout_user.setVisibility(View.VISIBLE)
-
         logOut()
     }
 
@@ -80,6 +79,7 @@ class UserFragment : Fragment() {
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
                 prefs.setUsername("")
                 prefs.setEmail("")
+                prefs.saveDate("")
                 startActivity(intent)
             }
         }
