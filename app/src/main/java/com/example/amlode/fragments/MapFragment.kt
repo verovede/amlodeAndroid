@@ -63,6 +63,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
+
+            /* LOGIN BYPASS
             if(!prefs.getUsername().isEmpty()) {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
@@ -70,6 +72,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val intent = Intent(context, DateFragment::class.java)
                 startActivity(intent)
             }
+            */
+            val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
+            viewFragment.findNavController().navigate(action)
         }
     }
 
