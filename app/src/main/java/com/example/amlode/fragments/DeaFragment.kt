@@ -102,13 +102,13 @@ class DeaFragment : Fragment() {
     private fun getDeaInfo(): DeaResponse {
         val longitud: Double = viewFragment.findViewById<EditText>(R.id.longitud_ubicacion).text.toString().toDouble()
         val latitud: Double = viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString().toDouble()
-        val titulo: String = viewFragment.findViewById<EditText>(R.id.dea_title).text.toString()
+        val titulo: String = viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
         val array: ArrayList<Double> = ArrayList<Double>(2)
         array.add(longitud)
         array.add(latitud)
 
         return DeaResponse(
-            11,
+            15,
             "dea",
             Coordinate("LatLng", array),
             StringValue("String", titulo),

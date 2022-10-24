@@ -154,7 +154,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun init(){
         map.isMyLocationEnabled = true
         setUserLocation()
-
     }
 
     private fun requestLocationPermission(){
