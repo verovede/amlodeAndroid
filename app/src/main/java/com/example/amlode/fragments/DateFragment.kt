@@ -52,7 +52,7 @@ class DateFragment : AppCompatActivity() {
         val pickedDate = LocalDate.of(year, month + 1, day)
 
         if (pickedDate < eighteenYearsAgo) {
-            register_date.setVisibility(View.VISIBLE);
+            register_date.setEnabled(true)
             age.setVisibility(View.INVISIBLE)
             register_date.setOnClickListener {
                 val intent = Intent(this, LoginScreen::class.java)
@@ -60,6 +60,7 @@ class DateFragment : AppCompatActivity() {
                 finish()
             }
         }else{
+            register_date.setEnabled(false)
             age.setVisibility(View.VISIBLE)
         }
     }
