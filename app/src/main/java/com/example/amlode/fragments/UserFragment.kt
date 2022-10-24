@@ -24,6 +24,10 @@ class UserFragment : Fragment() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: ImageButton
     lateinit var spinner: ProgressBar
+    lateinit var icon: ImageView
+    lateinit var title: TextView
+    lateinit var totalPoints: TextView
+    lateinit var button_deas: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +40,7 @@ class UserFragment : Fragment() {
             showData()
         }else{
             spinner.setVisibility(View.VISIBLE);
-            val intent = Intent(context, LoginScreen::class.java)
+            val intent = Intent(context, DateFragment::class.java)
             startActivity(intent)
         }
         return viewFragment
@@ -47,13 +51,12 @@ class UserFragment : Fragment() {
     }
 
     private fun showData(){
+        visibility()
         username.text = prefs.getUsername()
         email.text = prefs.getEmail()
         points.setText("Puntos acumulados: ")
-        date.setText("Fecha de nacimiento: ")
+        date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
-        logout_user.setVisibility(View.VISIBLE)
-
         logOut()
     }
 
@@ -64,7 +67,24 @@ class UserFragment : Fragment() {
         points = viewFragment.findViewById(R.id.points)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
+        icon = viewFragment.findViewById(R.id.icoAid)
         spinner = viewFragment.findViewById(R.id.spinner_user)
+        title= viewFragment.findViewById(R.id.title_aid)
+        totalPoints = viewFragment.findViewById(R.id.totalPuntos)
+        button_deas = viewFragment.findViewById(R.id.bot_deas_user)
+    }
+
+    private fun visibility(){
+        logout_user.setVisibility(View.VISIBLE)
+        title.setVisibility(View.VISIBLE)
+        photo.setVisibility(View.VISIBLE)
+        username.setVisibility(View.VISIBLE)
+        email.setVisibility(View.VISIBLE)
+        date.setVisibility(View.VISIBLE)
+        totalPoints.setVisibility(View.VISIBLE)
+        points.setVisibility(View.VISIBLE)
+        logout_user.setVisibility(View.VISIBLE)
+        button_deas.setVisibility(View.VISIBLE)
     }
 
     private fun logOut(){
@@ -80,6 +100,7 @@ class UserFragment : Fragment() {
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
                 prefs.setUsername("")
                 prefs.setEmail("")
+                prefs.saveDate("")
                 startActivity(intent)
             }
         }

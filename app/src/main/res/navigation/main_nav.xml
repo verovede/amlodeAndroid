@@ -48,6 +48,10 @@
         android:id="@+id/deaFragment"
         android:name="com.example.amlode.fragments.DeaFragment"
         android:label="fragment_dea"
-        tools:layout="@layout/fragment_dea" />
+        tools:layout="@layout/fragment_dea" >
+        <action
+            android:id="@+id/action_deaFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
 </navigation>

@@ -10,7 +10,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@android:color/holo_red_dark"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
@@ -28,34 +28,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-               />
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Google Login"
+                android:text="Ingresar con Google"
+                android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="32sp" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/Signin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="30dp"
                 android:layout_gravity="center"
                 android:layout_margin="50dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/Signin">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,14 +77,20 @@
                         android:layout_gravity="center"
                         android:text="Sign in with Google"
                         android:textAlignment="center"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo_amlode" />
 
     </androidx.cardview.widget.CardView>
 
