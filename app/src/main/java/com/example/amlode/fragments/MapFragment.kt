@@ -71,9 +71,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val intent = Intent(context, DateFragment::class.java)
                 startActivity(intent)
             }
-
-            val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
-            viewFragment.findNavController().navigate(action)
         }
     }
 
