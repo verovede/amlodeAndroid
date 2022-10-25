@@ -67,6 +67,18 @@
         <action
             android:id="@+id/action_dateFragment_to_mapFragment2"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_dateFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.amlode.fragments.LoginFragment"
+        android:label="activity_auth"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
     </fragment>
 
 </navigation>

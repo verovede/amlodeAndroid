@@ -22,10 +22,6 @@ class UserFragment : Fragment() {
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: ImageButton
-    lateinit var icon: ImageView
-    lateinit var title: TextView
-    lateinit var totalPoints: TextView
-    lateinit var button_deas: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,10 +59,6 @@ class UserFragment : Fragment() {
         points = viewFragment.findViewById(R.id.points)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
-        icon = viewFragment.findViewById(R.id.icoAid)
-        title= viewFragment.findViewById(R.id.title_aid)
-        totalPoints = viewFragment.findViewById(R.id.totalPuntos)
-        button_deas = viewFragment.findViewById(R.id.bot_deas_user)
     }
 
     private fun logOut(){
