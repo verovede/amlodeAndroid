@@ -47,7 +47,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginScreen"
+            android:name=".fragments.LoginFragment"
             android:exported="true" />
         <activity
             android:name=".fragments.DateFragment"

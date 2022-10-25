@@ -1,6 +1,5 @@
 package com.example.amlode.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.amlode.DatePickerFragment
-import com.example.amlode.LoginScreen
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import java.time.LocalDate
@@ -28,6 +27,7 @@ class DateFragment : Fragment() {
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_date, container, false)
         findById()
+        register_date.setEnabled(false)
         return viewFragment
     }
 
@@ -64,11 +64,10 @@ class DateFragment : Fragment() {
             register_date.setEnabled(true)
             age.setVisibility(View.INVISIBLE)
             register_date.setOnClickListener {
-                val intent = Intent(requireContext(), LoginScreen::class.java)
-                startActivity(intent)
+                val action = DateFragmentDirections.actionDateFragmentToLoginFragment()
+                viewFragment.findNavController().navigate(action)
             }
         }else{
-            register_date.setEnabled(false)
             age.setVisibility(View.VISIBLE)
         }
     }
