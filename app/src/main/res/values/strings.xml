@@ -51,6 +51,12 @@ Reconozco actuar como colaborador voluntario en situaciones de emergencia siempr
     <string name="title_section_user_points">Total de puntos acumulados</string>
     <string name="bot_section_user_dea">Ver mis DEAS</string>
 
+    <!-- Strings related to date screen -->
+    <string name="title_section_date">Registro de Usuario</string>
+    <string name="text_section_date">Por favor, ingresa tu fecha de nacimiento para continuar, tenés que ser mayor de 18 años para poder registrate en AMLODE</string>
+    <string name="bot_section_date">Validar Fecha</string>
+    <string name="alert_section_date">Edad inválida. No podés ingresar.</string>
+
 
 
 
