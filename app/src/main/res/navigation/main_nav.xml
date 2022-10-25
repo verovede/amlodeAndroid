@@ -80,5 +80,10 @@
             android:id="@+id/action_loginFragment_to_dateFragment"
             app:destination="@id/dateFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/phoneFragment"
+        android:name="com.example.amlode.fragments.phoneFragment"
+        android:label="fragment_phone"
+        tools:layout="@layout/fragment_phone" />
 
 </navigation>

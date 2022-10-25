@@ -16,10 +16,10 @@ import java.time.LocalDate
 import java.time.Period
 
 class DateFragment : Fragment() {
-    lateinit var register_date: Button
-    lateinit var date: EditText
-    lateinit var age: TextView
-    lateinit var viewFragment: View
+    private lateinit var register_date: Button
+    private lateinit var date: EditText
+    private lateinit var age: TextView
+    private lateinit var viewFragment: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
