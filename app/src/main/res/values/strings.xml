@@ -57,6 +57,18 @@ Reconozco actuar como colaborador voluntario en situaciones de emergencia siempr
     <string name="bot_section_date">Validar Fecha</string>
     <string name="alert_section_date">Edad inválida. No podés ingresar.</string>
 
+    <!-- Strings related to loginGoogle screen -->
+    <string name="title_section_loginGoogle">Registro de Usuario</string>
+    <string name="text_section_loginGoogle">Falta muy poco para terminar! \n\n
+        Para convertirte en un Colaborador de AMLODE es muy fácil! \n\n
+        Tenes que contar con una cuenta de Google para poder validar tus datos.\n\n
+        Una vez registrado:\n\n
+        Podrás Agregar DEAS a la plataforma colaborativa.\n\n
+        Acceder a tu perfil de usuario donde  verás tus puntos acumulados.
+        </string>
+    <string name="bot_section_loginGoogle">Ingresá con Google</string>
+
+
 
 
 
