@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.amlode.R
 
-
 class PermitionsFragment : Fragment() {
 
     lateinit var viewFragment : View

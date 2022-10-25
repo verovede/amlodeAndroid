@@ -6,44 +6,47 @@
     app:startDestination="@id/mapFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.amlode.fragments.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
-    <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.amlode.fragments.infoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.amlode.fragments.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aidFragment"
         android:name="com.example.amlode.fragments.AidFragment"
         android:label="fragment_aid"
-        tools:layout="@layout/fragment_aid" />
+        tools:layout="@layout/fragment_aid" >
+        <action
+            android:id="@+id/action_aidFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.amlode.fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
         <action
+            android:id="@+id/action_mapFragment_to_dateFragment"
+            app:destination="@id/dateFragment" />
+        <action
             android:id="@+id/action_mapFragment_to_deaFragment"
             app:destination="@id/deaFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/phone"
-        android:name="com.example.amlode.fragments.phoneFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_phone"/>
-    <fragment
-        android:id="@+id/authFragment"
-        android:name="com.example.amlode.LoginScreen"
-        android:label="fragment_auth"
-        tools:layout="@layout/activity_auth" />
     <fragment
         android:id="@+id/deaFragment"
         android:name="com.example.amlode.fragments.DeaFragment"
@@ -51,6 +54,18 @@
         tools:layout="@layout/fragment_dea" >
         <action
             android:id="@+id/action_deaFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateFragment"
+        android:name="com.example.amlode.fragments.DateFragment"
+        android:label="fragment_date"
+        tools:layout="@layout/fragment_date" >
+        <action
+            android:id="@+id/action_dateFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_dateFragment_to_mapFragment2"
             app:destination="@id/mapFragment" />
     </fragment>
 

@@ -2,7 +2,6 @@ package com.example.amlode.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -68,8 +67,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{
-                val intent = Intent(context, DateFragment::class.java)
-                startActivity(intent)
+                val action = MapFragmentDirections.actionMapFragmentToDateFragment()
+                viewFragment.findNavController().navigate(action)
             }
         }
     }
