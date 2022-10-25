@@ -1,7 +1,6 @@
 package com.example.amlode
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -24,7 +23,6 @@ open class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = SavedPreference(this)
-
         setContentView(R.layout.activity_main)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
@@ -37,7 +35,6 @@ open class MainActivity : AppCompatActivity(){
     fun getMarkers() : MutableList<DeaMarker>{
         return this.markers
     }
-
 }
 
 

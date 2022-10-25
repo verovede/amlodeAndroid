@@ -2,8 +2,6 @@ package com.example.amlode
 
 import android.content.Context
 import android.net.Uri
-import android.widget.EditText
-import java.util.*
 
 class SavedPreference(val context: Context) {
 

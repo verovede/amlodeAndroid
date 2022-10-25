@@ -2,11 +2,10 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.MainActivity.Companion.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,7 +22,6 @@ class UserFragment : Fragment() {
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: ImageButton
-    lateinit var spinner: ProgressBar
     lateinit var icon: ImageView
     lateinit var title: TextView
     lateinit var totalPoints: TextView
@@ -35,23 +33,21 @@ class UserFragment : Fragment() {
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_user, container, false)
         findById()
-
-        if(!prefs.getUsername().isEmpty()){
-            showData()
-        }else{
-            spinner.setVisibility(View.VISIBLE);
-            val intent = Intent(context, DateFragment::class.java)
-            startActivity(intent)
-        }
         return viewFragment
     }
 
     override fun onStart() {
         super.onStart()
+
+        if(!prefs.getUsername().isEmpty()){
+            showData()
+        }else{
+            val action = UserFragmentDirections.actionUserFragmentToDateFragment()
+            viewFragment.findNavController().navigate(action)
+        }
     }
 
     private fun showData(){
-        visibility()
         username.text = prefs.getUsername()
         email.text = prefs.getEmail()
         points.setText("Puntos acumulados: ")
@@ -68,23 +64,9 @@ class UserFragment : Fragment() {
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
         icon = viewFragment.findViewById(R.id.icoAid)
-        spinner = viewFragment.findViewById(R.id.spinner_user)
         title= viewFragment.findViewById(R.id.title_aid)
         totalPoints = viewFragment.findViewById(R.id.totalPuntos)
         button_deas = viewFragment.findViewById(R.id.bot_deas_user)
-    }
-
-    private fun visibility(){
-        logout_user.setVisibility(View.VISIBLE)
-        title.setVisibility(View.VISIBLE)
-        photo.setVisibility(View.VISIBLE)
-        username.setVisibility(View.VISIBLE)
-        email.setVisibility(View.VISIBLE)
-        date.setVisibility(View.VISIBLE)
-        totalPoints.setVisibility(View.VISIBLE)
-        points.setVisibility(View.VISIBLE)
-        logout_user.setVisibility(View.VISIBLE)
-        button_deas.setVisibility(View.VISIBLE)
     }
 
     private fun logOut(){
