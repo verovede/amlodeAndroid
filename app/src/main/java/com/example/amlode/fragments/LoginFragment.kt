@@ -93,10 +93,6 @@ class LoginFragment : Fragment() {
             Toast.makeText(context, "Logging In", Toast.LENGTH_SHORT).show()
             signInGoogle()
         }
-
-        if (GoogleSignIn.getLastSignedInAccount(requireContext()) != null) {
-            startActivity(Intent(context, SplashActivity::class.java))
-        }
     }
 }
 
