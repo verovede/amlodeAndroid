@@ -38,7 +38,8 @@ class UserFragment : Fragment() {
         if(!prefs.getUsername().isEmpty()){
             showData()
         }else{
-            val action = UserFragmentDirections.actionUserFragmentToDateFragment()
+            //toque aca 1
+            val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
             viewFragment.findNavController().navigate(action)
         }
     }

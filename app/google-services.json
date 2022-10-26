@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "733158263647",
-    "project_id": "amlode-fefe1",
-    "storage_bucket": "amlode-fefe1.appspot.com"
+    "project_number": "268953318855",
+    "project_id": "amlodeapp",
+    "storage_bucket": "amlodeapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:733158263647:android:923371e7641959d2ab44ea",
+        "mobilesdk_app_id": "1:268953318855:android:ff88af01e414f27e6515e2",
         "android_client_info": {
           "package_name": "com.example.amlode"
         }
       },
       "oauth_client": [
         {
-          "client_id": "733158263647-pavm982s8krh2doprlvcq2iqboh35lsu.apps.googleusercontent.com",
+          "client_id": "268953318855-03cbi7vai7bakkps4n2cilotfnjeg476.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.amlode",
-            "certificate_hash": "3940df5178281b5d9b74549e67352b89b5be4528"
+            "certificate_hash": "16997eba59154572d59759f21d0cec6a7630d8d5"
           }
         },
         {
-          "client_id": "733158263647-bp9aau386aes0lfbcnoeuqqg49epf73l.apps.googleusercontent.com",
+          "client_id": "268953318855-bqi8v7kkdah3842i65t9qcrpt7jb1uef.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCtkiTdSJpxCfDhXv2NX0yyC34AdlAZEJk"
+          "current_key": "AIzaSyB421sIzcSZkh-m5PN2AVjXcCH_I3G41EY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "733158263647-bp9aau386aes0lfbcnoeuqqg49epf73l.apps.googleusercontent.com",
+              "client_id": "268953318855-bqi8v7kkdah3842i65t9qcrpt7jb1uef.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -3,10 +3,13 @@ package com.example.amlode.fragments
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
@@ -27,6 +30,8 @@ class LoginFragment : Fragment() {
     private val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var viewFragment : View
+
+    private lateinit var fragment: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,14 +78,26 @@ class LoginFragment : Fragment() {
                 prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
                 prefs.setEmail("Email: " + account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-                val intent = Intent(context, SplashActivity::class.java)
-                startActivity(intent)
+                //val intent = Intent(context, SplashActivity::class.java)
+                //startActivity(intent)
+                if(fragment == "actionLoginFragmentToUserFragment"){
+                    val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
+                    viewFragment.findNavController().navigate(action)
+                }
+                if(fragment == "actionLoginFragmentToMapFragment"){
+                    val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
+                    viewFragment.findNavController().navigate(action)
+                }
             }
         }
     }
 
     override fun onStart() {
         super.onStart()
+        // cambio04
+        val frag = DateFragmentArgs.fromBundle(requireArguments()).fragName
+        fragment = frag
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -93,6 +110,7 @@ class LoginFragment : Fragment() {
             Toast.makeText(context, "Logging In", Toast.LENGTH_SHORT).show()
             signInGoogle()
         }
+
     }
 }
 
