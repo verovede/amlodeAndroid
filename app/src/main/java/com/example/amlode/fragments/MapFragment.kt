@@ -67,7 +67,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{
-                val action = MapFragmentDirections.actionMapFragmentToDateFragment()
+                val action = MapFragmentDirections.actionMapFragmentToDateFragment("actionLoginFragmentToMapFragment")
                 viewFragment.findNavController().navigate(action)
             }
         }

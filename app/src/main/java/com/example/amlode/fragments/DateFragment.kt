@@ -21,6 +21,9 @@ class DateFragment : Fragment() {
     private lateinit var age: TextView
     private lateinit var viewFragment: View
 
+    private lateinit var fragment:String
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +40,10 @@ class DateFragment : Fragment() {
     }
     override fun onStart() {
         super.onStart()
+        // cambio02
+        val frag = DateFragmentArgs.fromBundle(requireArguments()).fragName
+        fragment = frag
+
         date.setOnClickListener{
             showDatePickerDialog()
         }
@@ -63,8 +70,9 @@ class DateFragment : Fragment() {
         if (pickedDate < eighteenYearsAgo) {
             register_date.setEnabled(true)
             age.setVisibility(View.INVISIBLE)
+            //cambio03
             register_date.setOnClickListener {
-                val action = DateFragmentDirections.actionDateFragmentToLoginFragment()
+                val action = DateFragmentDirections.actionDateFragmentToLoginFragment(fragment)
                 viewFragment.findNavController().navigate(action)
             }
         }else{
