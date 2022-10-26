@@ -130,7 +130,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     //función que pasa a bitmap las imagenes para el marcador de maps
     private fun getIcon(): BitmapDescriptor {
-        val drawable = ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.marker, null)
+        val drawable = ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.puntero, null)
         drawable?.setBounds(0,0, drawable.intrinsicWidth, drawable.intrinsicHeight)
         val bitmap: Bitmap = Bitmap.createBitmap(drawable?.intrinsicWidth ?: 0, drawable?.intrinsicHeight ?: 0, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
