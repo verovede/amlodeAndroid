@@ -111,19 +111,6 @@ class LoginFragment : Fragment() {
             signInGoogle()
         }
 
-        if (GoogleSignIn.getLastSignedInAccount(requireContext()) != null) {
-
-            //startActivity(Intent(context, SplashActivity::class.java))
-            if(fragment.equals("actionLoginFragmentToUserFragment")){
-                val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
-                viewFragment.findNavController().navigate(action)
-            }
-            if(fragment == "actionLoginFragmentToMapFragment"){
-                val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
-                viewFragment.findNavController().navigate(action)
-            }
-
-        }
     }
 }
 
