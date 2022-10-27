@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class DeaMarker(val id: Number, val lat: Double, val long: Double, val owner: String) : Parcelable
+class DeaMarker(val id: Number, val lat: Double, val long: Double, val active: Boolean, val date: String, val address: String) : Parcelable

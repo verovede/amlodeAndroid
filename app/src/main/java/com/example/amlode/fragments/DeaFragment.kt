@@ -13,12 +13,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.BooleanValue
-import com.example.amlode.data.Coordinate
 import com.example.amlode.data.DeaResponse
 import com.example.amlode.data.StringValue
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -100,21 +100,19 @@ class DeaFragment : Fragment() {
     }
 
     private fun getDeaInfo(): DeaResponse {
-        val longitud: Double = viewFragment.findViewById<EditText>(R.id.longitud_ubicacion).text.toString().toDouble()
-        val latitud: Double = viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString().toDouble()
-        val titulo: String = viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
-        val array: ArrayList<Double> = ArrayList<Double>(2)
-        array.add(longitud)
-        array.add(latitud)
+        val longitud: String = viewFragment.findViewById<EditText>(R.id.longitud_ubicacion).text.toString()
+        val latitud: String = viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString()
+        val address: String = viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
+        val date: String = "hoy"
 
         return DeaResponse(
             15,
             "dea",
-            Coordinate("LatLng", array),
-            StringValue("String", titulo),
-            StringValue("String", "fecha"),
-            StringValue("String", "fecha"),
-            BooleanValue("Boolean", false)
+            BooleanValue("active", true),
+            StringValue("address", "$address"),
+            StringValue("datestamp", "$date"),
+            StringValue("latitude", "$latitud"),
+            StringValue("longitud", "$longitud")
         )
     }
 
