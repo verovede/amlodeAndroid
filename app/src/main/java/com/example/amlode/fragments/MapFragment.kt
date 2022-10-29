@@ -106,7 +106,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val coordinate = LatLng(dea.lat, dea.long)
             val meters = String.format("%.2f", (distance / 1000 ))
             val markerOptions = MarkerOptions().position(coordinate)
-                .title(dea.id.toString())
+                .title(dea.id)
                 .snippet(dea.address)
                 .icon(icon)
             map.addMarker(markerOptions)

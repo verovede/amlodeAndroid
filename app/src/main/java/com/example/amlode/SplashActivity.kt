@@ -41,6 +41,7 @@ class SplashActivity : AppCompatActivity() {
                 if (response != null) {
                     Log.d("RESPONSE ", response.toString())
                     for(dea in response){
+                        Log.d("RESPONSE EN FOR ", dea.toString())
                         markers.add(DeaMarker(dea!!.id, dea!!.latitude.value.toDouble(), dea!!.longitude.value.toDouble(), dea!!.active.value, dea!!.datestamp.value, dea!!.address.value))
                     }
                     val bundle = Bundle()

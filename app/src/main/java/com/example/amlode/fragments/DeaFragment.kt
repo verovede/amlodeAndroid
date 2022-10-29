@@ -72,6 +72,8 @@ class DeaFragment : Fragment() {
                     }
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         Log.w("SUCCESS", "SUCCESS Call Post")
+                        Log.i("CALL", call.toString())
+                        Log.i("Response", response.toString())
                         val intent = Intent(requireContext(), SplashActivity::class.java)
                         startActivity(intent)
                     }
@@ -105,7 +107,7 @@ class DeaFragment : Fragment() {
         val date: String = "hoy"
 
         return DeaResponse(
-            200,
+            "200",
             "dea",
             BooleanValue("active", true),
             StringValue("address", "$address"),
