@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
@@ -73,6 +72,8 @@ class DeaFragment : Fragment() {
                     }
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         Log.w("SUCCESS", "SUCCESS Call Post")
+                        Log.i("CALL", call.toString())
+                        Log.i("Response", response.toString())
                         val intent = Intent(requireContext(), SplashActivity::class.java)
                         startActivity(intent)
                     }
@@ -106,13 +107,13 @@ class DeaFragment : Fragment() {
         val date: String = "hoy"
 
         return DeaResponse(
-            15,
+            "200",
             "dea",
             BooleanValue("active", true),
             StringValue("address", "$address"),
             StringValue("datestamp", "$date"),
             StringValue("latitude", "$latitud"),
-            StringValue("longitud", "$longitud")
+            StringValue("longitude", "$longitud")
         )
     }
 
