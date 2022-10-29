@@ -10,6 +10,7 @@ class SavedPreference(val context: Context) {
     private val USERNAME = "username"
     private var PHOTO= "photo"
     private var DATE= "date"
+    private var SIZEDEAS= "size"
 
     val storage = context.getSharedPreferences(SHARED_NAME,0)
 
@@ -43,6 +44,14 @@ class SavedPreference(val context: Context) {
 
     fun saveDate(date: String){
         storage.edit().putString(DATE, date).apply()
+    }
+
+    fun getSizeDeas(): Int {
+        return storage.getInt(SIZEDEAS, 0)
+    }
+
+    fun saveSizeDeas(size: Int){
+        storage.edit().putInt(SIZEDEAS, size).apply()
     }
 }
 

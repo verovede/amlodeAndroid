@@ -54,6 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         userLocation = Location("")
         markers = (activity as MainActivity).getMarkers()
+        prefs.saveSizeDeas(markers.size)
         createFragment()
         return viewFragment
     }

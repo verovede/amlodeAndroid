@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
 import com.example.amlode.api.APIService
@@ -104,9 +105,8 @@ class DeaFragment : Fragment() {
         val latitud: String = viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString()
         val address: String = viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
         val date: String = "${LocalDateTime.now().dayOfMonth}/${LocalDateTime.now().month.ordinal+1}/${LocalDateTime.now().year}"
-
         return DeaResponse(
-            "300",
+            "${prefs.getSizeDeas()+1}",
             "dea",
             BooleanValue("Boolean", true),
             StringValue("String", "$address"),
