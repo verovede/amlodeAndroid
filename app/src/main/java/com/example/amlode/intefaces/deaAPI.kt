@@ -1,6 +1,7 @@
 package com.example.amlode.intefaces
 
 import com.example.amlode.data.DeaResponse
+import com.example.amlode.data.UserResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,4 +14,7 @@ interface deaAPI {
 
     @POST("v2/entities")
     fun postDea(@Body Dea: DeaResponse): Call<Void>?
+
+    @POST("v2/entities")
+    fun postUser(@Body User: UserResponse): Call<Void>?
 }

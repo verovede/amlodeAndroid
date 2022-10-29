@@ -75,11 +75,10 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
-                prefs.setEmail("Email: " + account.email.toString())
+                prefs.setUsername(account.displayName.toString())
+                prefs.setEmail(account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-                //val intent = Intent(context, SplashActivity::class.java)
-                //startActivity(intent)
+
                 if(fragment == "actionLoginFragmentToUserFragment"){
                     val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
                     viewFragment.findNavController().navigate(action)
