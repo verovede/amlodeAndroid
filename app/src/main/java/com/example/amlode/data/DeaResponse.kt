@@ -1,7 +1,6 @@
 package com.example.amlode.data
 import com.google.gson.annotations.SerializedName
 
-
 data class DeaResponse(
     @field:SerializedName("id") val id: Number,
     @field:SerializedName("type") val type: String,
