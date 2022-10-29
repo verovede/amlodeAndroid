@@ -1,5 +1,6 @@
 package com.example.amlode.api
-import com.example.amlode.intefaces.deaAPI
+import com.example.amlode.intefaces.DeaAPI
+import com.example.amlode.intefaces.UserAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +11,7 @@ class APIService {
 
     companion object {
         private const val BASE_URL = "http://192.168.100.64:1026/"
-        fun create(): deaAPI {
+        fun createDeaAPI(): DeaAPI {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
 
             val client = OkHttpClient.Builder()
@@ -22,7 +23,22 @@ class APIService {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(deaAPI::class.java)
+                .create(DeaAPI::class.java)
+        }
+
+        fun createUserAPI(): UserAPI {
+            val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(logger)
+                .build()
+
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(UserAPI::class.java)
         }
     }
 }

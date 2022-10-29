@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
     //llama api realiza un intent hacia main (que pide permisos y carga hacia maps)
     private fun callApi() {
-        val api = APIService.create()
+        val api = APIService.createDeaAPI()
 
         api.getDeas()?.enqueue(object : Callback<ArrayList<DeaResponse?>?> {
             override fun onResponse(

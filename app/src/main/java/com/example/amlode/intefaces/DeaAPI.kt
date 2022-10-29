@@ -6,7 +6,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface deaAPI {
+interface DeaAPI {
+
     @GET("v2/entities?type=dea")
     fun getDeas(
     ): Call<ArrayList<DeaResponse?>?>?
