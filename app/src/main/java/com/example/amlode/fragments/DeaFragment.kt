@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
 import java.util.*
 
 class DeaFragment : Fragment() {
@@ -102,7 +103,7 @@ class DeaFragment : Fragment() {
         val longitud: String = viewFragment.findViewById<EditText>(R.id.longitud_ubicacion).text.toString()
         val latitud: String = viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString()
         val address: String = viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
-        val date: String = "hoy"
+        val date: String = "${LocalDateTime.now().dayOfMonth}/${LocalDateTime.now().month.ordinal+1}/${LocalDateTime.now().year}"
 
         return DeaResponse(
             "300",
