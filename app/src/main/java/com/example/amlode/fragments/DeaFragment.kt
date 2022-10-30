@@ -65,7 +65,7 @@ class DeaFragment : Fragment() {
         addDea = viewFragment.findViewById(R.id.add_dea)
         addDea.setOnClickListener {
             val newDea = getDeaInfo()
-            val api = APIService.create()
+            val api = APIService.createDeaAPI()
 
             Log.w("deaCreado", "$newDea")
 

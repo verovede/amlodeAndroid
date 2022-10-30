@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class UserFragment : Fragment() {
     private lateinit var viewFragment : View
