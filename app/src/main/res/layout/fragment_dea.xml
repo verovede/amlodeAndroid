@@ -16,7 +16,7 @@
         android:text="Ubicación del DEA a agregar"
         android:textColor="@color/black"
         android:textSize="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/longitud_ubicacion"
+        app:layout_constraintBottom_toTopOf="@+id/latitude_ubicacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -24,17 +24,17 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/latitud_ubicacion"
+        android:id="@+id/longitude_ubicacion"
         android:layout_width="182dp"
         android:layout_height="62dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="64dp"
-        android:hint="Latitud"
+        android:hint="Longitud"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/longitud_ubicacion" />
+        app:layout_constraintTop_toBottomOf="@+id/latitude_ubicacion" />
 
     <EditText
         android:id="@+id/direccion_encontrada"
@@ -47,15 +47,15 @@
         android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latitud_ubicacion"
+        app:layout_constraintTop_toBottomOf="@+id/longitude_ubicacion"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/longitud_ubicacion"
+        android:id="@+id/latitude_ubicacion"
         android:layout_width="182dp"
         android:layout_height="66dp"
         android:layout_marginTop="124dp"
-        android:hint="Longitud"
+        android:hint="Latitud"
         android:inputType="textPersonName"
         android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,31 +64,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/longitud_title"
+        android:id="@+id/latitude_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="48dp"
-        android:text="Longitud"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="64dp"
+        android:text="Latitud"
         android:textColor="@color/black"
         android:textSize="19dp"
-        app:layout_constraintEnd_toStartOf="@+id/longitud_ubicacion"
+        app:layout_constraintEnd_toStartOf="@+id/latitude_ubicacion"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/latitud_title"
-        android:layout_width="67dp"
+        android:layout_width="88dp"
         android:layout_height="42dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="100dp"
-        android:text="Latitud"
+        android:text="Longitud"
         android:textColor="@color/black"
         android:textSize="19dp"
         app:layout_constraintBottom_toTopOf="@+id/direccion_title"
-        app:layout_constraintEnd_toStartOf="@+id/latitud_ubicacion"
+        app:layout_constraintEnd_toStartOf="@+id/longitude_ubicacion"
         app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/longitud_title"
+        app:layout_constraintTop_toBottomOf="@+id/latitude_title"
         app:layout_constraintVertical_bias="0.926" />
 
     <TextView
@@ -138,7 +138,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="26dp"
         android:src="@drawable/ic_add_circle"
-        app:layout_constraintBottom_toTopOf="@+id/longitud_title"
+        app:layout_constraintBottom_toTopOf="@+id/latitude_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

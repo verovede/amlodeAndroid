@@ -88,14 +88,14 @@ class DeaFragment : Fragment() {
     }
 
     private fun findById() {
-        longitud = viewFragment.findViewById(R.id.longitud_ubicacion)
-        latitud = viewFragment.findViewById(R.id.latitud_ubicacion)
+        longitud = viewFragment.findViewById(R.id.longitude_ubicacion)
+        latitud = viewFragment.findViewById(R.id.latitude_ubicacion)
         direccion = viewFragment.findViewById(R.id.direccion_encontrada)
     }
 
     private fun setCoordinatesText(latitude: Double, longitude: Double) {
-        longitud.setText(latitude.toString())
-        latitud.setText(longitude.toString())
+        latitud.setText(latitude.toString())
+        longitud.setText(longitude.toString())
         setAdress(latitude, longitude)
     }
 
@@ -106,13 +106,13 @@ class DeaFragment : Fragment() {
     }
 
     private fun getDeaInfo(): DeaResponse {
-        val longitud: String =
-            viewFragment.findViewById<EditText>(R.id.longitud_ubicacion).text.toString()
         val latitud: String =
-            viewFragment.findViewById<EditText>(R.id.latitud_ubicacion).text.toString()
+            viewFragment.findViewById<EditText>(R.id.latitude_ubicacion).text.toString()
+        val longitud: String =
+            viewFragment.findViewById<EditText>(R.id.longitude_ubicacion).text.toString()
         val address: String =
             viewFragment.findViewById<EditText>(R.id.direccion_encontrada).text.toString()
-        val date: String =
+        val date =
             "${LocalDateTime.now().dayOfMonth}/${LocalDateTime.now().month.ordinal + 1}/${LocalDateTime.now().year}"
         val idDea: Int = prefs.getSizeDeas() + 1
         return DeaResponse(
@@ -121,8 +121,8 @@ class DeaFragment : Fragment() {
             BooleanValue("Boolean", true),
             StringValue("String", "$address"),
             StringValue("String", "$date"),
-            StringValue("String", "$longitud"),
-            StringValue("String", "$latitud")
+            StringValue("String", "$latitud"),
+            StringValue("String", "$longitud")
         )
     }
 
