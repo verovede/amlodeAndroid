@@ -1,5 +1,4 @@
 package com.example.amlode.data
-import android.provider.ContactsContract
 import com.google.gson.annotations.SerializedName
 
 data class UserResponse(

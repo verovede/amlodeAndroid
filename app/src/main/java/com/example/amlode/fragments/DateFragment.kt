@@ -40,7 +40,6 @@ class DateFragment : Fragment() {
     }
     override fun onStart() {
         super.onStart()
-        // cambio02
         val frag = DateFragmentArgs.fromBundle(requireArguments()).fragName
         fragment = frag
 

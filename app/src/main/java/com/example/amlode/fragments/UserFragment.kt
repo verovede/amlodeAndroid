@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 class UserFragment : Fragment() {
     private lateinit var viewFragment : View
@@ -45,19 +46,15 @@ class UserFragment : Fragment() {
             showData()
             postUser()
         }else{
-            //toque aca 1
             val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
             viewFragment.findNavController().navigate(action)
         }
-
-
-
     }
 
     private fun showData(){
         username.text = "Nombre y apellido: " + prefs.getUsername()
         email.text = "Email: " + prefs.getEmail()
-        points.setText("Puntos acumulados: ")
+        points.setText("${prefs.getPoints()}")
         date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
         logOut()
@@ -92,7 +89,7 @@ class UserFragment : Fragment() {
     }
 
     private fun postUser(){
-        val api = APIService.create()
+        val api = APIService.createUserAPI()
         val newUser = createUser()
         api.postUser(newUser)?.enqueue(
             object : Callback<Void> {
@@ -107,7 +104,8 @@ class UserFragment : Fragment() {
     }
 
     private fun createUser(): UserResponse {
-        val deas: ArrayList<Int> = ArrayList<Int>(0)
+        val deas: ArrayList<String> = ArrayList()
+        //val deas: MutableList<String> = ArrayList()
         return UserResponse(
             "${prefs.getEmail()}",
             "user",

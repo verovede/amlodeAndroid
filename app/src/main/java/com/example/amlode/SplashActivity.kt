@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
 import com.example.amlode.entities.DeaMarker
