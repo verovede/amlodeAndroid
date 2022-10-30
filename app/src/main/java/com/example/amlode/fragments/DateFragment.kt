@@ -64,7 +64,7 @@ class DateFragment : Fragment() {
         prefs.saveDate("$day/$month/$year")
 
         val eighteenYearsAgo = LocalDate.now() - Period.ofYears(18)
-        val pickedDate = LocalDate.of(year, month + 1, day)
+        val pickedDate = LocalDate.of(year, month, day)
 
         if (pickedDate < eighteenYearsAgo) {
             register_date.setEnabled(true)
