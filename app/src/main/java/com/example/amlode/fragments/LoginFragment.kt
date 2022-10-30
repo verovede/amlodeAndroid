@@ -3,16 +3,13 @@ package com.example.amlode.fragments
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
-import com.example.amlode.SplashActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -75,11 +72,10 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                prefs.setUsername("Nombre y apellido: " + account.displayName.toString())
-                prefs.setEmail("Email: " + account.email.toString())
+                prefs.setUsername(account.displayName.toString())
+                prefs.setEmail(account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-                //val intent = Intent(context, SplashActivity::class.java)
-                //startActivity(intent)
+
                 if(fragment == "actionLoginFragmentToUserFragment"){
                     val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
                     viewFragment.findNavController().navigate(action)
@@ -94,7 +90,6 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // cambio04
         val frag = DateFragmentArgs.fromBundle(requireArguments()).fragName
         fragment = frag
 
@@ -110,7 +105,6 @@ class LoginFragment : Fragment() {
             Toast.makeText(context, "Logging In", Toast.LENGTH_SHORT).show()
             signInGoogle()
         }
-
     }
 }
 

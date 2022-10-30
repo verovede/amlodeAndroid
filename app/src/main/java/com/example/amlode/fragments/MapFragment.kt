@@ -54,6 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         userLocation = Location("")
         markers = (activity as MainActivity).getMarkers()
+        prefs.saveSizeDeas(markers.size)
         createFragment()
         return viewFragment
     }
@@ -96,14 +97,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val loc = Location("")
 
         for(dea in markers){
-            //imprime datos de https://dea-get.herokuapp.com/api/deas/
-            Log.w("dea ${dea.id}", "${dea.lat} ${dea.long}")
+            Log.w("dea ${dea.id}", "${dea.latitude} ${dea.longitude}")
 
-            loc.longitude = dea.long
-            loc.latitude = dea.lat
+            loc.longitude = dea.longitude
+            loc.latitude = dea.latitude
 
             val distance = loc.distanceTo(userLocation)
-            val coordinate = LatLng(dea.lat, dea.long)
+            val coordinate = LatLng(dea.latitude, dea.longitude)
             val meters = String.format("%.2f", (distance / 1000 ))
             val markerOptions = MarkerOptions().position(coordinate)
                 .title(dea.id)

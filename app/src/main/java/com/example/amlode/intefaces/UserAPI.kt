@@ -1,43 +1,16 @@
 package com.example.amlode.intefaces
-import android.widget.Toast
-import com.example.amlode.api.APIService
-import com.example.amlode.data.DeaResponse
+import com.example.amlode.data.PatchUser
 import com.example.amlode.data.UserResponse
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface UserAPI {
+    @POST("v2/entities")
+    fun postUser(@Body User: UserResponse): Call<Void>?
+
     @GET
     fun getUser(@Url url: String): Call<UserResponse?>?
+
+    @PATCH("v2/entities/{id}/attrs?type=user")
+    fun patchUser(@Path("id") id: String?, @Body contacts: PatchUser): Call<Void>?
 }
-
-/*
-private fun callApiUser() {
-
-
-    val api = APIService.createUserAPI()
-    api.getUser("v2/entities/${mail}?type=user")?.enqueue(object : Callback<UserResponse?> {
-
-
-        override fun onResponse(call: Call<UserResponse?>, response: Response<UserResponse?>) {
-
-            val response : UserResponse? = (response.body())!!
-
-            if (response != null) {
-                //todo logica
-            }
-        }
-
-        override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
-            Toast.makeText (applicationContext,
-                "Se ha producido un error ",
-                Toast.LENGTH_SHORT)
-                .show();
-        }
-    })
-}
-
-*/

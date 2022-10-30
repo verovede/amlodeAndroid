@@ -2,16 +2,23 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.MainActivity.Companion.prefs
+import com.example.amlode.api.APIService
+import com.example.amlode.data.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.math.log
 
 class UserFragment : Fragment() {
     private lateinit var viewFragment : View
@@ -37,17 +44,17 @@ class UserFragment : Fragment() {
 
         if(!prefs.getUsername().isEmpty()){
             showData()
+            postUser()
         }else{
-            //toque aca 1
             val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
             viewFragment.findNavController().navigate(action)
         }
     }
 
     private fun showData(){
-        username.text = prefs.getUsername()
-        email.text = prefs.getEmail()
-        points.setText("Puntos acumulados: ")
+        username.text = "Nombre y apellido: " + prefs.getUsername()
+        email.text = "Email: " + prefs.getEmail()
+        points.setText("${prefs.getPoints()}")
         date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
         logOut()
@@ -81,4 +88,32 @@ class UserFragment : Fragment() {
         }
     }
 
+    private fun postUser(){
+        val api = APIService.createUserAPI()
+        val newUser = createUser()
+        api.postUser(newUser)?.enqueue(
+            object : Callback<Void> {
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Post")
+                }
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.w("SUCCESS", "SUCCESS Call Post")
+                }
+            }
+        )
+    }
+
+    private fun createUser(): UserResponse {
+        val deas: ArrayList<String> = ArrayList()
+        //val deas: MutableList<String> = ArrayList()
+        return UserResponse(
+            "${prefs.getEmail()}",
+            "user",
+            BooleanValue("Boolean", true),
+            ArrayValue("StructuredValue", deas),
+            StringValue("String", "${prefs.getDate()}"),
+            StringValue("String", "${prefs.getUsername()}"),
+            NumberValue("Number", 0)
+        )
+    }
 }
