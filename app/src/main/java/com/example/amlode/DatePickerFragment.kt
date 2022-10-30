@@ -15,7 +15,9 @@ class DatePickerFragment(val listener: (day: Int, month: Int, year: Int) -> Unit
         var year = calendar.get(Calendar.YEAR)
         var month = calendar.get(Calendar.MONTH)
         var day = calendar.get(Calendar.DAY_OF_MONTH)
-        return DatePickerDialog(requireContext(),R.style.DatePickerTheme, this, year, month, day)
+        var datePicker = DatePickerDialog(requireContext(),R.style.DatePickerTheme, this, year, month, day)
+        datePicker.getDatePicker().setMaxDate(calendar.timeInMillis)
+        return datePicker
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
