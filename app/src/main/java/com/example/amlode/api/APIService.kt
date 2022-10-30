@@ -11,7 +11,7 @@ class APIService {
 
     companion object {
         private const val BASE_URL = "http://192.168.100.64:1026/"
-        fun create(): DeaAPI {
+        fun createDeaAPI(): DeaAPI {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
 
             val client = OkHttpClient.Builder()

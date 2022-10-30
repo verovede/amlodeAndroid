@@ -69,7 +69,6 @@ class DateFragment : Fragment() {
         if (pickedDate < eighteenYearsAgo) {
             register_date.setEnabled(true)
             age.setVisibility(View.INVISIBLE)
-            //cambio03
             register_date.setOnClickListener {
                 val action = DateFragmentDirections.actionDateFragmentToLoginFragment(fragment)
                 viewFragment.findNavController().navigate(action)
