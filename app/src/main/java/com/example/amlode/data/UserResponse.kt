@@ -8,5 +8,6 @@ data class UserResponse(
     @field:SerializedName("deas") val deas: ArrayValue,
     @field:SerializedName("fechaNac") val fechaNac: StringValue,
     @field:SerializedName("name") val name: StringValue,
+    @field:SerializedName("lastName") val lastName: StringValue,
     @field:SerializedName("points") val points: NumberValue,
 )

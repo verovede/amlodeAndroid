@@ -72,7 +72,8 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                prefs.setUsername(account.displayName.toString())
+                prefs.setName(account.givenName.toString())
+                prefs.setLastName(account.familyName.toString())
                 prefs.setEmail(account.email.toString())
                 prefs.savePhoto(account.photoUrl)
 

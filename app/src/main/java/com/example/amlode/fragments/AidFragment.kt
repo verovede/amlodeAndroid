@@ -20,13 +20,9 @@ class AidFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_aid, container, false)
-        buttonCall = viewFragment.findViewById<Button>(R.id.buttonAid)
+        buttonCall = viewFragment.findViewById(R.id.buttonAid)
 
         return viewFragment
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onStart() {

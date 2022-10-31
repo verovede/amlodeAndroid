@@ -38,7 +38,7 @@ class DeaFragment : Fragment() {
     private lateinit var longitud: EditText
     private lateinit var latitud: EditText
     private lateinit var direccion: EditText
-    private val api = APIService.createUserAPI()
+    private val apiUser = APIService.createUserAPI()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,11 +65,11 @@ class DeaFragment : Fragment() {
         addDea = viewFragment.findViewById(R.id.add_dea)
         addDea.setOnClickListener {
             val newDea = getDeaInfo()
-            val api = APIService.createDeaAPI()
+            val apiDea = APIService.createDeaAPI()
 
             Log.w("deaCreado", "$newDea")
 
-            api.postDea(newDea)?.enqueue(
+            apiDea.postDea(newDea)?.enqueue(
                 object : Callback<Void> {
                     override fun onFailure(call: Call<Void>, t: Throwable) {
                         Log.w("FAILURE", "Failure Call Post")
@@ -142,7 +142,7 @@ class DeaFragment : Fragment() {
     }
 
     private fun callUserByEmail(idDeaAggregate: String) {
-        api.getUser("v2/entities/${prefs.getEmail()}?type=user")
+        apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
             ?.enqueue(object : Callback<UserResponse?> {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
@@ -167,7 +167,7 @@ class DeaFragment : Fragment() {
     }
 
     private fun callPatchUser(email: String, user: PatchUser) {
-        api.patchUser(email, user)?.enqueue(
+        apiUser.patchUser(email, user)?.enqueue(
             object : Callback<Void> {
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     Log.w("FAILURE", "Failure Call Post")

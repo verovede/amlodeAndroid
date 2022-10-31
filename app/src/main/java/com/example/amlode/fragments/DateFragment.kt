@@ -20,7 +20,6 @@ class DateFragment : Fragment() {
     private lateinit var date: EditText
     private lateinit var age: TextView
     private lateinit var viewFragment: View
-
     private lateinit var fragment:String
 
 
@@ -34,10 +33,6 @@ class DateFragment : Fragment() {
         return viewFragment
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     override fun onStart() {
         super.onStart()
         val frag = DateFragmentArgs.fromBundle(requireArguments()).fragName
