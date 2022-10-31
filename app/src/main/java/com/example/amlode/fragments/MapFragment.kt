@@ -64,7 +64,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonDea = viewFragment.findViewById(R.id.button_dea)
         buttonDea.setOnClickListener{
 
-            if(!prefs.getUsername().isEmpty()) {
+            if(!prefs.getEmail().isEmpty()) {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
             }else{

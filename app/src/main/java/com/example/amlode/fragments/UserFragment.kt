@@ -41,7 +41,7 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        if(!prefs.getUsername().isEmpty()){
+        if(!prefs.getEmail().isEmpty()){
             showData()
             postUser()
         }else{
@@ -51,7 +51,7 @@ class UserFragment : Fragment() {
     }
 
     private fun showData(){
-        username.text = "Nombre y apellido: " + prefs.getUsername()
+        username.text = "Nombre y apellido: " + prefs.getName() + " ${prefs.getLastName()}"
         email.text = "Email: " + prefs.getEmail()
         points.setText("${prefs.getPoints()}")
         date.setText("Fecha de nacimiento: " + prefs.getDate())
@@ -79,7 +79,8 @@ class UserFragment : Fragment() {
             mGoogleSignInClient.signOut().addOnCompleteListener {
                 val intent = Intent(context, MainActivity::class.java)
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
-                prefs.setUsername("")
+                prefs.setName("")
+                prefs.setLastName("")
                 prefs.setEmail("")
                 prefs.saveDate("")
                 startActivity(intent)
@@ -104,14 +105,15 @@ class UserFragment : Fragment() {
 
     private fun createUser(): UserResponse {
         val deas: ArrayList<String> = ArrayList()
-        //val deas: MutableList<String> = ArrayList()
+
         return UserResponse(
             "${prefs.getEmail()}",
             "user",
             BooleanValue("Boolean", true),
             ArrayValue("StructuredValue", deas),
             StringValue("String", "${prefs.getDate()}"),
-            StringValue("String", "${prefs.getUsername()}"),
+            StringValue("String", "${prefs.getName()}"),
+            StringValue("String", "${prefs.getLastName()}"),
             NumberValue("Number", 0)
         )
     }

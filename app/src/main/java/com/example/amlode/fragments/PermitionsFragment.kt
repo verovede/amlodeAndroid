@@ -24,8 +24,4 @@ class PermitionsFragment : Fragment() {
         return viewFragment
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
 }

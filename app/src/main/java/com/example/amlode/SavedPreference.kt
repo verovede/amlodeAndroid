@@ -7,7 +7,8 @@ class SavedPreference(val context: Context) {
 
     private val SHARED_NAME = "amlode"
     private val EMAIL = "email"
-    private val USERNAME = "username"
+    private val NAME = "name"
+    private val LASTNAME = "lastname"
     private var PHOTO= "photo"
     private var DATE= "date"
     private var SIZEDEAS= "size"
@@ -23,12 +24,20 @@ class SavedPreference(val context: Context) {
         return  storage.getString(EMAIL, "")!!
     }
 
-    fun setUsername(username:String){
-        storage.edit().putString(USERNAME,username).apply()
+    fun setName(name:String){
+        storage.edit().putString(NAME,name).apply()
     }
 
-    fun getUsername():String{
-        return storage.getString(USERNAME, "")!!
+    fun getName():String{
+        return storage.getString(NAME, "")!!
+    }
+
+    fun setLastName(lastname:String){
+        storage.edit().putString(LASTNAME,lastname).apply()
+    }
+
+    fun getLastName():String{
+        return storage.getString(LASTNAME, "")!!
     }
 
     fun getPhoto(): String {
