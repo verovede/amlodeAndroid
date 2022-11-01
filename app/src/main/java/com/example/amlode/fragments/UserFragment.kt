@@ -2,22 +2,16 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.MainActivity.Companion.prefs
-import com.example.amlode.api.APIService
-import com.example.amlode.data.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class UserFragment : Fragment() {
     private lateinit var viewFragment : View
@@ -43,7 +37,6 @@ class UserFragment : Fragment() {
 
         if(!prefs.getEmail().isEmpty()){
             showData()
-            postUser()
         }else{
             val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
             viewFragment.findNavController().navigate(action)
@@ -86,35 +79,5 @@ class UserFragment : Fragment() {
                 startActivity(intent)
             }
         }
-    }
-
-    private fun postUser(){
-        val api = APIService.createUserAPI()
-        val newUser = createUser()
-        api.postUser(newUser)?.enqueue(
-            object : Callback<Void> {
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.w("FAILURE", "Failure Call Post")
-                }
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    Log.w("SUCCESS", "SUCCESS Call Post")
-                }
-            }
-        )
-    }
-
-    private fun createUser(): UserResponse {
-        val deas: ArrayList<String> = ArrayList()
-
-        return UserResponse(
-            "${prefs.getEmail()}",
-            "user",
-            BooleanValue("Boolean", true),
-            ArrayValue("StructuredValue", deas),
-            StringValue("String", "${prefs.getDate()}"),
-            StringValue("String", "${prefs.getName()}"),
-            StringValue("String", "${prefs.getLastName()}"),
-            NumberValue("Number", 0)
-        )
     }
 }
