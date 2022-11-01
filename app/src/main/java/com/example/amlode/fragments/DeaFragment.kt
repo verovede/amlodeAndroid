@@ -149,7 +149,7 @@ class DeaFragment : Fragment() {
                     if (user != null) {
                         val userUpdated = createPatchUser(user.deas.value, user.points.value, idDeaAggregate)
                         callPatchUser(prefs.getEmail(), userUpdated)
-                        prefs.savePoints(user.points.value.toInt())
+                        prefs.savePoints(userUpdated.points.value.toInt())
                     }
                 }
                 override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
