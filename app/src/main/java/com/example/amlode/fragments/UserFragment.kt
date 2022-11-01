@@ -2,6 +2,7 @@ package com.example.amlode.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -46,6 +47,7 @@ class UserFragment : Fragment() {
     private fun showData(){
         username.text = "Nombre y apellido: " + prefs.getName() + " ${prefs.getLastName()}"
         email.text = "Email: " + prefs.getEmail()
+        Log.d("PUNTOS SHOW DATA" ,"${prefs.getPoints()}")
         points.setText("${prefs.getPoints()}")
         date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)
@@ -76,6 +78,7 @@ class UserFragment : Fragment() {
                 prefs.setLastName("")
                 prefs.setEmail("")
                 prefs.saveDate("")
+                prefs.savePoints(0)
                 startActivity(intent)
             }
         }

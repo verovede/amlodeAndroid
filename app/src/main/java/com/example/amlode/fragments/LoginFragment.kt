@@ -92,6 +92,7 @@ class LoginFragment : Fragment() {
                     viewFragment.findNavController().navigate(action)
                 }
                 postUser()
+                callUserByEmail()
             }
         }
     }
@@ -143,6 +144,24 @@ class LoginFragment : Fragment() {
             StringValue("String", "${prefs.getLastName()}"),
             NumberValue("Number", 0)
         )
+    }
+
+    private fun callUserByEmail() {
+        val apiUser = APIService.createUserAPI()
+        apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
+            ?.enqueue(object : Callback<UserResponse?> {
+                override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
+                    val user: UserResponse? = (user.body())!!
+                    if (user != null) {
+                        Log.d("PUNTOS LOGIN" ,"${user.points.value.toInt()}")
+                        Log.d("USER" ,"${user}")
+                      prefs.savePoints(user.points.value.toInt())
+                    }
+                }
+                override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Post")
+                }
+            })
     }
 }
 
