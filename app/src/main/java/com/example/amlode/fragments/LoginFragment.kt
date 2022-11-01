@@ -36,7 +36,6 @@ class LoginFragment : Fragment() {
     private val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var viewFragment : View
-
     private lateinit var fragment: String
 
     override fun onCreateView(
