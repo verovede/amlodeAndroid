@@ -78,7 +78,6 @@ class UserFragment : Fragment() {
                 prefs.setLastName("")
                 prefs.setEmail("")
                 prefs.saveDate("")
-                prefs.savePoints(0)
                 startActivity(intent)
             }
         }

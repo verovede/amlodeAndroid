@@ -23,6 +23,9 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -78,21 +81,25 @@ class LoginFragment : Fragment() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                prefs.setEmail(account.email.toString())
                 prefs.setName(account.givenName.toString())
                 prefs.setLastName(account.familyName.toString())
-                prefs.setEmail(account.email.toString())
                 prefs.savePhoto(account.photoUrl)
-
-                if(fragment == "actionLoginFragmentToUserFragment"){
-                    val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
-                    viewFragment.findNavController().navigate(action)
-                }
-                if(fragment == "actionLoginFragmentToMapFragment"){
-                    val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
-                    viewFragment.findNavController().navigate(action)
-                }
                 postUser()
                 callUserByEmail()
+
+                GlobalScope.launch {
+                    delay(1000L)
+                    if (fragment == "actionLoginFragmentToUserFragment") {
+                        val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
+                        viewFragment.findNavController().navigate(action)
+                    }
+                    if (fragment == "actionLoginFragmentToMapFragment") {
+                        val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
+                        viewFragment.findNavController().navigate(action)
+                    }
+                }
+
             }
         }
     }
