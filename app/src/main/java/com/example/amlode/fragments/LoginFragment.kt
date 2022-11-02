@@ -146,13 +146,14 @@ class LoginFragment : Fragment() {
                         Log.d("USER" ,"${user}")
                       prefs.savePoints(user.points.value.toInt())
                     }
+                    navigate()
                 }
                 override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
                     Log.w("FAILURE", "Failure Call Post")
                 }
             })
 
-        navigate()
+
 
     }
 
