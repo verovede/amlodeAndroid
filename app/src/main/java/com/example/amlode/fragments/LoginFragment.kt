@@ -23,9 +23,6 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,7 +42,6 @@ class LoginFragment : Fragment() {
         viewFragment = inflater.inflate(R.layout.fragment_login, container, false)
         return viewFragment
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,20 +81,6 @@ class LoginFragment : Fragment() {
                 prefs.setLastName(account.familyName.toString())
                 prefs.savePhoto(account.photoUrl)
                 postUser()
-                callUserByEmail()
-
-                GlobalScope.launch {
-                    delay(1000L)
-                    if (fragment == "actionLoginFragmentToUserFragment") {
-                        val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
-                        viewFragment.findNavController().navigate(action)
-                    }
-                    if (fragment == "actionLoginFragmentToMapFragment") {
-                        val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
-                        viewFragment.findNavController().navigate(action)
-                    }
-                }
-
             }
         }
     }
@@ -132,6 +114,7 @@ class LoginFragment : Fragment() {
                 }
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.w("SUCCESS", "SUCCESS Call Post")
+                    callUserByEmail()
                 }
             }
         )
@@ -168,6 +151,20 @@ class LoginFragment : Fragment() {
                     Log.w("FAILURE", "Failure Call Post")
                 }
             })
+
+        navigate()
+
+    }
+
+    private fun navigate(){
+        if (fragment == "actionLoginFragmentToUserFragment") {
+            val action = LoginFragmentDirections.actionLoginFragmentToUserFragment()
+            viewFragment.findNavController().navigate(action)
+        }
+        if (fragment == "actionLoginFragmentToMapFragment") {
+            val action = LoginFragmentDirections.actionLoginFragmentToMapFragment()
+            viewFragment.findNavController().navigate(action)
+        }
     }
 }
 

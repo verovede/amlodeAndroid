@@ -72,7 +72,7 @@ class UserFragment : Fragment() {
         mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
         logout_user.setOnClickListener {
             mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent = Intent(context, MainActivity::class.java)
+                val intent = Intent(context, SplashActivity::class.java)
                 Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
                 prefs.setName("")
                 prefs.setLastName("")
