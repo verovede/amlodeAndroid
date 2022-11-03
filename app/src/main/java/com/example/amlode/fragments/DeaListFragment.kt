@@ -23,9 +23,9 @@ import retrofit2.Response
 class  DeaListFragment : Fragment() {
 
     lateinit var v: View
+
     lateinit var recDeas: RecyclerView
     var deas: MutableList<DeaListado> = ArrayList<DeaListado>()
-
     private lateinit var linearlayourManager: LinearLayoutManager
     private lateinit var deaListAdapter: DeaListAdapter
 
@@ -60,6 +60,7 @@ class  DeaListFragment : Fragment() {
                         val deasInUser= user.deas.value
                         for(dea in deasInUser){
                             buscarDeaPorId(dea)
+
                         }
                     }
                 }
@@ -67,11 +68,21 @@ class  DeaListFragment : Fragment() {
                     Log.w("FAILURE", "Failure Call Get")
                 }
             })
+
+
+       /* for (i in 1..10) {
+
+            deas.add(DeaListado("hola", "hola"  ))
+        }*/
+
+
         recDeas.setHasFixedSize(true)
+
         linearlayourManager = LinearLayoutManager(context)
+
         recDeas.layoutManager = linearlayourManager
-        deaListAdapter = DeaListAdapter(deas){ x ->
-            onItemClick(x)
+
+        recDeas.adapter = DeaListAdapter(deas){ x -> onItemClick(x)
         }
     }
 
@@ -88,6 +99,9 @@ class  DeaListFragment : Fragment() {
                     val dea: DeaResponse? = (user.body())!!
                     if (dea != null) {
                         deas.add(DeaListado( " ${dea.address}", "${dea.id}"))
+                        deas.add(DeaListado( " caca", "caca2"))
+                        Log.d("Deas ver","${deas}")
+
                     }
                 }
 

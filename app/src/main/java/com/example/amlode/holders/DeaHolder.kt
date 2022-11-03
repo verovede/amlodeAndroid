@@ -14,9 +14,9 @@ class DeaHolder(v: View) : RecyclerView.ViewHolder(v){
         this.view = v
     }
 
-    fun setAdress(name: String){
+    fun setAdress(address: String){
         val txt: TextView = view.findViewById(R.id.item_dea_adresss)
-        txt.text = name
+        txt.text = address
     }
 
     fun setId(id: String){
