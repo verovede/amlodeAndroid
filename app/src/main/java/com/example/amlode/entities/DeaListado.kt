@@ -1,20 +1,15 @@
 package com.example.amlode.entities
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.example.amlode.R
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
+class DeaListado(val direccion: String, val id: String) : Parcelable {
 
-class DeaListado(direccion: String?, id: String?) {
-
-    var direccion: String = ""
-    var id: String = ""
+    val direccionItem: String = direccion
+    val idItem: String =id
 
     init {
-        this.direccion = direccion!!
-        this.id = id!!
+
     }
 }
