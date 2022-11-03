@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_userFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_deaListFragment"
+            app:destination="@id/deaListFragment" />
     </fragment>
     <fragment
         android:id="@+id/aidFragment"
@@ -97,5 +100,14 @@
         android:name="com.example.amlode.fragments.phoneFragment"
         android:label="fragment_phone"
         tools:layout="@layout/fragment_phone" />
+    <fragment
+        android:id="@+id/deaListFragment"
+        android:name="com.example.amlode.fragments.DeaListFragment"
+        android:label="fragment_dea_list"
+        tools:layout="@layout/fragment_dea_list" >
+        <argument
+            android:name="mailUser"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

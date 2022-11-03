@@ -16,18 +16,11 @@
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_aid.xml" value="0.25" />
-        <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_dea_list.xml" value="0.20416666666666666" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_info.xml" value="0.33" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_main.xml" value="0.20416666666666666" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_map.xml" value="0.20416666666666666" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/fragment_permitions.xml" value="0.20416666666666666" />
-        <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/layout/item_dea_listado.xml" value="0.33" />
         <entry key="..\:/AMLODE/amlodeAndroid/app/src/main/res/menu/button_bar_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Libraries/My Documents/ORT/Cuarto Cuatrimestre/Proyecto Final/Repo Android/amlodeAndroid/app/src/main/res/layout/fragment_dea_list.xml" value="0.34717948717948716" />
-        <entry key="..\:/Libraries/My Documents/ORT/Cuarto Cuatrimestre/Proyecto Final/Repo Android/amlodeAndroid/app/src/main/res/layout/fragment_dea_listado.xml" value="0.36102564102564105" />
-        <entry key="..\:/Libraries/My Documents/ORT/Cuarto Cuatrimestre/Proyecto Final/Repo Android/amlodeAndroid/app/src/main/res/layout/fragment_list_list.xml" value="0.25364583333333335" />
-        <entry key="..\:/Libraries/My Documents/ORT/Cuarto Cuatrimestre/Proyecto Final/Repo Android/amlodeAndroid/app/src/main/res/layout/item_dea.xml" value="0.20726495726495728" />
-        <entry key="..\:/Libraries/My Documents/ORT/Cuarto Cuatrimestre/Proyecto Final/Repo Android/amlodeAndroid/app/src/main/res/layout/item_dea_listado.xml" value="0.33" />
         <entry key="..\:/Users/German/Desktop/AMLODE Main/app/src/main/res/drawable/ic_dd_circle.xml" value="0.104" />
         <entry key="..\:/Users/German/Desktop/AMLODE Main/app/src/main/res/drawable/ic_login.xml" value="0.104" />
         <entry key="..\:/Users/German/Desktop/AMLODE Main/app/src/main/res/layout/activity_splash.xml" value="0.1762917933130699" />
@@ -102,7 +95,11 @@
         <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP/app/src/main/res/layout/fragment_user.xml" value="0.33" />
         <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP/app/src/main/res/menu/button_bar_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/fragment_dea_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/fragment_login.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/fragment_map.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Usuario/Documents/__MIS CARPETAS/ORT/AMLODE_APP_V3/amlodeAndroid/app/src/main/res/layout/fragment_user.xml" value="0.33" />
       </map>
     </option>
   </component>
