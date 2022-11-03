@@ -55,7 +55,6 @@ class UserFragment : Fragment() {
     private fun showData(){
         username.text = "Nombre y apellido: " + prefs.getName() + " ${prefs.getLastName()}"
         email.text = "Email: " + prefs.getEmail()
-        Log.d("PUNTOS SHOW DATA" ,"${prefs.getPoints()}")
         points.setText("${prefs.getPoints()}")
         date.setText("Fecha de nacimiento: " + prefs.getDate())
         Picasso.with(context).load(prefs.getPhoto()).into(photo)

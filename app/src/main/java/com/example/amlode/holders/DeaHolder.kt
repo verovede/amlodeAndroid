@@ -19,9 +19,9 @@ class DeaHolder(v: View) : RecyclerView.ViewHolder(v){
         txt.text = name
     }
 
-    fun setId(id : Int){
+    fun setId(id: String){
         val txt: TextView = view.findViewById(R.id.item_dea_id)
-        txt.text = id.toString()
+        txt.text = id
     }
 
     fun getCardLayout(): CardView {

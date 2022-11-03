@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import com.example.amlode.R
 
 
-class DeaListado(direccion: String?, id: Int?) {
+class DeaListado(direccion: String?, id: String?) {
 
     var direccion: String = ""
-    var id: Int = 0
+    var id: String = ""
 
     init {
         this.direccion = direccion!!

@@ -1,16 +1,24 @@
 package com.example.amlode.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import com.example.amlode.adapters.DeaListAdapter
+import com.example.amlode.api.APIService
+import com.example.amlode.data.DeaResponse
+import com.example.amlode.data.UserResponse
 import com.example.amlode.entities.DeaListado
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class  DeaListFragment : Fragment() {
 
@@ -43,19 +51,22 @@ class  DeaListFragment : Fragment() {
         Snackbar.make(v,idUser,Snackbar.LENGTH_SHORT).show()
 
         // busco los deas por el mail del usuario
-        // ACA CAMI TU MAGIA!
-
-
-
-        //for(i in 1≤..≤10 ){
-        //}
-
-        //Hardcodeado para testeo
-        deas.add(DeaListado( "Manzanares 3271", 1))
-        deas.add(DeaListado( "Calle falsa 123", 2))
-        deas.add(DeaListado( "Maipu 1855", 3))
-        deas.add(DeaListado( "Sarlanga 32C", 4))
-
+        val apiUser = APIService.createUserAPI()
+        apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
+            ?.enqueue(object : Callback<UserResponse?> {
+                override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
+                    val user: UserResponse? = (user.body())!!
+                    if (user != null) {
+                        val deasInUser= user.deas.value
+                        for(dea in deasInUser){
+                            buscarDeaPorId(dea)
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Get")
+                }
+            })
         recDeas.setHasFixedSize(true)
         linearlayourManager = LinearLayoutManager(context)
         recDeas.layoutManager = linearlayourManager
@@ -68,4 +79,23 @@ class  DeaListFragment : Fragment() {
         Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
         return true
     }
+
+    private fun buscarDeaPorId(id:String) {
+        val apiDea = APIService.createDeaAPI()
+        apiDea.getDea("v2/entities/${id}?type=dea")
+            ?.enqueue(object : Callback<DeaResponse?> {
+                override fun onResponse(call: Call<DeaResponse?>, user: Response<DeaResponse?>) {
+                    val dea: DeaResponse? = (user.body())!!
+                    if (dea != null) {
+                        deas.add(DeaListado( " ${dea.address}", "${dea.id}"))
+                    }
+                }
+
+                override fun onFailure(call: Call<DeaResponse?>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Get")
+                }
+            })
+
+    }
+
 }
