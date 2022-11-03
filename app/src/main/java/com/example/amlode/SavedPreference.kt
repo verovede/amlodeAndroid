@@ -69,12 +69,16 @@ class SavedPreference(val context: Context) {
         return storage.getInt(POINTS, 0)
     }
 
-    fun savePoints(size: Int) {
-        storage.edit().putInt(POINTS, size).apply()
+    fun savePoints(points: Int) {
+        storage.edit().putInt(POINTS, points).apply()
     }
 
     fun saveDeas(dea: ArrayList<String>) {
         storage.edit().putString(DEAS, dea.toString()).apply()
+    }
+
+    fun getDeas(): String {
+        return storage.getString(DEAS, "")!!
     }
 }
 
