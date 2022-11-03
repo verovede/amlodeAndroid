@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
+import com.example.amlode.SavedPreference
 import com.example.amlode.SplashActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.*
@@ -150,6 +151,7 @@ class DeaFragment : Fragment() {
                         val userUpdated = createPatchUser(user.deas.value, user.points.value, idDeaAggregate)
                         callPatchUser(prefs.getEmail(), userUpdated)
                         prefs.savePoints(userUpdated.points.value.toInt())
+                        prefs.saveDeas(user.deas.value)
                     }
                 }
                 override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
