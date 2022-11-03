@@ -153,7 +153,7 @@ class DeaFragment : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
-                    Log.w("FAILURE", "Failure Call Post")
+                    Log.w("FAILURE", "Failure Call Get")
                 }
             })
     }
@@ -170,14 +170,14 @@ class DeaFragment : Fragment() {
         apiUser.patchUser(email, user)?.enqueue(
             object : Callback<Void> {
                 override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.w("FAILURE", "Failure Call Post")
+                    Log.w("FAILURE", "Failure Call Patch")
                 }
 
                 override fun onResponse(
                     call: Call<Void>,
                     response: Response<Void>
                 ) {
-                    Log.w("SUCCESS", "SUCCESS Call Post")
+                    Log.w("SUCCESS", "SUCCESS Call Patch")
                 }
             }
         )

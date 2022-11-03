@@ -51,9 +51,8 @@ open class MainActivity : AppCompatActivity(){
                     Log.w("FAILURE", "Failure Call Post")
                 }
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    Log.w("SUCCESS", "SUCCESS Call Post 2")
+                    Log.w("SUCCESS", "SUCCESS Call Post")
                     Log.w("response ", "$response")
-                    Log.w("response ", "$persistent")
                 }
             }
         )

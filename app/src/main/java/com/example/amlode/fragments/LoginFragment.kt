@@ -142,8 +142,6 @@ class LoginFragment : Fragment() {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
-                        Log.d("PUNTOS LOGIN" ,"${user.points.value.toInt()}")
-                        Log.d("USER" ,"${user}")
                       prefs.savePoints(user.points.value.toInt())
                     }
                     navigate()
@@ -152,9 +150,6 @@ class LoginFragment : Fragment() {
                     Log.w("FAILURE", "Failure Call Post")
                 }
             })
-
-
-
     }
 
     private fun navigate(){
