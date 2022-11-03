@@ -38,6 +38,15 @@ class  DeaListFragment : Fragment() {
     override fun onStart(){
         super.onStart()
 
+        // recibe por args el mail del usuario
+        val idUser = DeaListFragmentArgs.fromBundle(requireArguments()).mailUser
+        Snackbar.make(v,idUser,Snackbar.LENGTH_SHORT).show()
+
+        // busco los deas por el mail del usuario
+        // ACA CAMI TU MAGIA!
+
+
+
         //for(i in 1≤..≤10 ){
         //}
 

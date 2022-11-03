@@ -23,6 +23,7 @@ class UserFragment : Fragment() {
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: ImageButton
+    lateinit var bot_deas_user : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +31,7 @@ class UserFragment : Fragment() {
     ): View? {
         viewFragment = inflater.inflate(R.layout.fragment_user, container, false)
         findById()
+
         return viewFragment
     }
 
@@ -40,6 +42,12 @@ class UserFragment : Fragment() {
             showData()
         }else{
             val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
+            viewFragment.findNavController().navigate(action)
+        }
+
+        //IR AL LISTADO DE DEAS DEL USUARIO
+        bot_deas_user.setOnClickListener{
+            val action = UserFragmentDirections.actionUserFragmentToDeaListFragment(prefs.getEmail().toString())
             viewFragment.findNavController().navigate(action)
         }
     }
@@ -61,6 +69,7 @@ class UserFragment : Fragment() {
         points = viewFragment.findViewById(R.id.points)
         photo =  viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
+        bot_deas_user = viewFragment.findViewById(R.id.bot_deas_user)
     }
 
     private fun logOut(){
