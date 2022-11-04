@@ -68,5 +68,11 @@ Reconozco actuar como colaborador voluntario en situaciones de emergencia siempr
         </string>
     <string name="bot_section_loginGoogle">Ingresá con Google</string>
 
+    <!-- Strings related to add DEA screen -->
+    <string name="title_section_addDea">Agregar DEA</string>
+    <string name="text_section_addDea">Por favor, ingresa tu fecha de nacimiento para continuar, tenés que ser mayor de 18 años para poder registrate en AMLODE</string>
+    <string name="bot_section_addDea">Validar Fecha</string>
+    <string name="alert_section_addDea">Edad inválida. No podés ingresar.</string>
+
 
 </resources>
