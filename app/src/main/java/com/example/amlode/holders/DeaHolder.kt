@@ -16,12 +16,12 @@ class DeaHolder(v: View) : RecyclerView.ViewHolder(v){
 
     fun setAdress(address: String){
         val txt: TextView = view.findViewById(R.id.item_dea_adresss)
-        txt.text = address
+        txt.text = "Dirección:$address"
     }
 
     fun setId(id: String){
         val txt: TextView = view.findViewById(R.id.item_dea_id)
-        txt.text = id
+        txt.text = "ID: $id"
     }
 
     fun getCardLayout(): CardView {
