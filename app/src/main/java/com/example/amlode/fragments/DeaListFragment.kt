@@ -48,14 +48,11 @@ class  DeaListFragment : Fragment() {
         recDeas.setHasFixedSize(true)
         linearlayourManager = LinearLayoutManager(context)
         recDeas.layoutManager = linearlayourManager
-        recDeas.adapter = DeaListAdapter(deas){ x -> onItemClick(x)
-
-
-        }
+        recDeas.adapter = DeaListAdapter(deas){ x -> onItemClick(x)}
     }
 
     fun onItemClick( position : Int) : Boolean{
-        Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
+        //Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
         return true
     }
 
