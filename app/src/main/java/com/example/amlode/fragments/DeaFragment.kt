@@ -20,6 +20,7 @@ import com.example.amlode.SavedPreference
 import com.example.amlode.SplashActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.*
+import com.example.amlode.entities.DeaListado
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
@@ -148,19 +149,20 @@ class DeaFragment : Fragment() {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
-                        val userUpdated = createPatchUser(user.deas.value, user.points.value, idDeaAggregate)
+                        val userUpdated =
+                            createPatchUser(user.deas.value, user.points.value, idDeaAggregate)
                         callPatchUser(prefs.getEmail(), userUpdated)
                         prefs.savePoints(userUpdated.points.value.toInt())
-                        prefs.saveDeas(userUpdated.deas.value)
                     }
                 }
+
                 override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
                     Log.w("FAILURE", "Failure Call Get")
                 }
             })
     }
 
-    private fun createPatchUser(deas: ArrayList<String>, points: Number, deaId : String): PatchUser {
+    private fun createPatchUser(deas: ArrayList<String>, points: Number, deaId: String): PatchUser {
         deas.add(deaId)
         return PatchUser(
             ArrayValue("StructuredValue", deas),
@@ -184,4 +186,8 @@ class DeaFragment : Fragment() {
             }
         )
     }
+
 }
+
+
+
