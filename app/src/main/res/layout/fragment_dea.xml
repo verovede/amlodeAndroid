@@ -7,140 +7,129 @@
     android:layout_height="match_parent"
     tools:context=".fragments.DeaFragment">
 
+    <ImageView
+        android:id="@+id/icoAid"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_add_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/title_aid"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dea_title"
-        android:layout_width="295dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="52dp"
-        android:text="Ubicación del DEA a agregar"
+        android:id="@+id/title_aid"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/title_section_addDea"
         android:textColor="@color/black"
-        android:textSize="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/latitude_ubicacion"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icoAid" />
 
-    <EditText
-        android:id="@+id/longitude_ubicacion"
-        android:layout_width="182dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="64dp"
-        android:hint="Longitud"
-        android:inputType="textPersonName"
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/roboto"
+        android:text="Latitud"
         android:textColor="@color/black"
-        android:textSize="19dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latitude_ubicacion" />
-
-    <EditText
-        android:id="@+id/direccion_encontrada"
-        android:layout_width="182dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="256dp"
-        android:hint="Dirección"
-        android:inputType="textPersonName"
-        android:textSize="19dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/longitude_ubicacion"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_aid" />
 
     <EditText
         android:id="@+id/latitude_ubicacion"
-        android:layout_width="182dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="124dp"
-        android:hint="Latitud"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorDea"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitude" />
+
+    <EditText
+        android:id="@+id/longitude_ubicacion"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorDea"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/longitud" />
+
+    <EditText
+        android:id="@+id/direccion_encontrada"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
         android:inputType="textPersonName"
         android:textSize="19dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/direccion_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/latitude_title"
+        android:id="@+id/longitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="64dp"
-        android:text="Latitud"
-        android:textColor="@color/black"
-        android:textSize="19dp"
-        app:layout_constraintEnd_toStartOf="@+id/latitude_ubicacion"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/latitud_title"
-        android:layout_width="88dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="30dp"
         android:text="Longitud"
         android:textColor="@color/black"
-        android:textSize="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/direccion_title"
-        app:layout_constraintEnd_toStartOf="@+id/longitude_ubicacion"
-        app:layout_constraintHorizontal_bias="0.793"
+        android:textSize="20dp"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latitude_title"
-        app:layout_constraintVertical_bias="0.926" />
+        app:layout_constraintTop_toBottomOf="@+id/latitude_ubicacion" />
 
     <TextView
         android:id="@+id/direccion_title"
-        android:layout_width="88dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="116dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="Dirección"
         android:textColor="@color/black"
         android:textSize="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/volver_map"
-        app:layout_constraintEnd_toStartOf="@+id/direccion_encontrada"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/volver_map"
-        android:layout_width="107dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="96dp"
-        android:backgroundTint="#DD0C0C"
-        android:text="volver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_dea"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/longitude_ubicacion" />
 
     <Button
         android:id="@+id/add_dea"
-        android:layout_width="218dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#DD0C0C"
         android:text="Confirmar DEA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.849"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="26dp"
-        android:src="@drawable/ic_add_circle"
-        app:layout_constraintBottom_toTopOf="@+id/latitude_title"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/direccion_encontrada" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

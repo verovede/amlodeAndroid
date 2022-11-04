@@ -57,11 +57,7 @@ class DeaFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val volverButton: Button = viewFragment.findViewById(R.id.volver_map)
-        volverButton.setOnClickListener {
-            val action = DeaFragmentDirections.actionDeaFragmentToMapFragment()
-            viewFragment.findNavController().navigate(action)
-        }
+
 
         //Todo agregar ubicacion usuario
         addDea = viewFragment.findViewById(R.id.add_dea)
