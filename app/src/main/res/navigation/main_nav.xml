@@ -106,8 +106,8 @@
         android:label="fragment_dea_list"
         tools:layout="@layout/fragment_dea_list" >
         <argument
-            android:name="mailUser"
-            app:argType="string" />
+            android:name="deaList"
+            app:argType="com.example.amlode.entities.DeaListado[]" />
     </fragment>
 
 </navigation>
