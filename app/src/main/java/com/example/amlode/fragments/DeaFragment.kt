@@ -12,15 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
-import com.example.amlode.SavedPreference
 import com.example.amlode.SplashActivity
 import com.example.amlode.api.APIService
 import com.example.amlode.data.*
-import com.example.amlode.entities.DeaListado
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
@@ -41,6 +39,7 @@ class DeaFragment : Fragment() {
     private lateinit var latitud: EditText
     private lateinit var direccion: EditText
     private val apiUser = APIService.createUserAPI()
+    private val apiDea = APIService.createDeaAPI()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,29 +57,10 @@ class DeaFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-
         //Todo agregar ubicacion usuario
         addDea = viewFragment.findViewById(R.id.add_dea)
         addDea.setOnClickListener {
-            val newDea = getDeaInfo()
-            val apiDea = APIService.createDeaAPI()
-
-            Log.w("deaCreado", "$newDea")
-
-            apiDea.postDea(newDea)?.enqueue(
-                object : Callback<Void> {
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.w("FAILURE", "Failure Call Post")
-                    }
-
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.w("SUCCESS", "SUCCESS Call Post")
-                        val intent = Intent(requireContext(), SplashActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
-            )
-            callUserByEmail(newDea.id)
+            createDea()
         }
 
     }
@@ -181,6 +161,59 @@ class DeaFragment : Fragment() {
                 }
             }
         )
+    }
+
+    private fun createDea() {
+        apiDea.getDeas()?.enqueue(object : Callback<ArrayList<DeaResponse?>?> {
+            override fun onResponse(
+                call: Call<ArrayList<DeaResponse?>?>,
+                response: Response<ArrayList<DeaResponse?>?>
+            ) {
+                val response: ArrayList<DeaResponse?>? = (response.body())!!
+                if (response != null) {
+                    var existeDea = false
+                    for (dea in response) {
+                        if (dea != null) {
+                            if(dea.address.value == direccion.text.toString() ){
+                                existeDea = true;
+                            }
+                        }
+                    }
+
+                    if(!existeDea){
+                        postDea()
+                    }else{
+                        Toast.makeText(context, "Dea ya registrado", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<DeaResponse?>?>, t: Throwable) {
+                Log.w("FAILURE", "Failure Call Get")
+            }
+        })
+    }
+
+    private fun postDea(){
+        val newDea = getDeaInfo()
+        val apiDea = APIService.createDeaAPI()
+
+        Log.w("deaCreado", "$newDea")
+
+        apiDea.postDea(newDea)?.enqueue(
+            object : Callback<Void> {
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Post")
+                }
+
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    Log.w("SUCCESS", "SUCCESS Call Post")
+                    val intent = Intent(requireContext(), SplashActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        )
+        callUserByEmail(newDea.id)
     }
 
 }
