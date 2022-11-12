@@ -12,7 +12,6 @@ class SavedPreference(val context: Context) {
     private var PHOTO = "photo"
     private var DATE = "date"
     private var SIZEDEAS = "size"
-    private var DEAS = "deas"
     private var POINTS = "points"
 
     val storage = context.getSharedPreferences(SHARED_NAME, 0)
