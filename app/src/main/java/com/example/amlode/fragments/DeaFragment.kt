@@ -183,7 +183,7 @@ class DeaFragment : Fragment() {
                     if(!existeDea){
                         postDea()
                     }else{
-                        Toast.makeText(context, "Dea ya registrado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Dea ya registrado!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
