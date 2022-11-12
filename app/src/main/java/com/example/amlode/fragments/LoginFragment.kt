@@ -34,6 +34,7 @@ class LoginFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var viewFragment : View
     private lateinit var fragment: String
+    private var apiUser = APIService.createUserAPI()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -136,13 +137,13 @@ class LoginFragment : Fragment() {
     }
 
     private fun callUserByEmail() {
-        val apiUser = APIService.createUserAPI()
         apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
             ?.enqueue(object : Callback<UserResponse?> {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
                       prefs.savePoints(user.points.value.toInt())
+                      patchDate(prefs.getEmail(), userDate())
                     }
                     navigate()
                 }
@@ -162,5 +163,29 @@ class LoginFragment : Fragment() {
             viewFragment.findNavController().navigate(action)
         }
     }
+
+    private fun patchDate(email: String, user: PatchUserDate) {
+        apiUser.patchUserDate(email, user)?.enqueue(
+            object : Callback<Void> {
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Patch")
+                }
+
+                override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+                ) {
+                    Log.w("SUCCESS", "SUCCESS Call Patch")
+                }
+            }
+        )
+    }
+
+    private fun userDate(): PatchUserDate{
+        return PatchUserDate(
+            StringValue("String", prefs.getDate()),
+        )
+    }
+
 }
 
