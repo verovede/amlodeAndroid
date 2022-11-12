@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.amlode.R
 import com.example.amlode.adapters.DeaListAdapter
 import com.example.amlode.entities.DeaListado
-import com.google.android.material.snackbar.Snackbar
 
 class  DeaListFragment : Fragment() {
 
