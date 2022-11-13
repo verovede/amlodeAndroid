@@ -119,16 +119,22 @@ class DeaFragment : Fragment() {
             }
     }
 
-    private fun callUserByEmail(idDeaAggregate: String) {
+    private fun createIfIsPossible() {
+        val newDea = getDeaInfo()
         apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
             ?.enqueue(object : Callback<UserResponse?> {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
-                        val userUpdated =
-                            createPatchUser(user.deas.value, user.points.value, idDeaAggregate)
-                        callPatchUser(prefs.getEmail(), userUpdated)
-                        prefs.savePoints(userUpdated.points.value.toInt())
+                        if(user.active.value){
+                            val userUpdated =
+                                createPatchUser(user.deas.value, user.points.value, newDea.id)
+                            callPatchUser(prefs.getEmail(), userUpdated)
+                            prefs.savePoints(userUpdated.points.value.toInt())
+                            postDea(newDea)
+                        }else{
+                            Toast.makeText(context, "No estás autorizado para agregar un dea!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
 
@@ -181,7 +187,7 @@ class DeaFragment : Fragment() {
                     }
 
                     if(!existeDea){
-                        postDea()
+                        createIfIsPossible()
                     }else{
                         Toast.makeText(context, "Dea ya registrado!", Toast.LENGTH_SHORT).show()
                     }
@@ -194,11 +200,8 @@ class DeaFragment : Fragment() {
         })
     }
 
-    private fun postDea(){
-        val newDea = getDeaInfo()
+    private fun postDea(newDea: DeaResponse){
         val apiDea = APIService.createDeaAPI()
-
-        Log.w("deaCreado", "$newDea")
 
         apiDea.postDea(newDea)?.enqueue(
             object : Callback<Void> {
@@ -213,7 +216,7 @@ class DeaFragment : Fragment() {
                 }
             }
         )
-        callUserByEmail(newDea.id)
+
     }
 
 }
