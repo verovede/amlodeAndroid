@@ -21,7 +21,8 @@
         tools:layout="@layout/fragment_user" >
         <action
             android:id="@+id/action_userFragment_to_dateFragment"
-            app:destination="@id/dateFragment" />
+            app:destination="@id/dateFragment"
+            app:popUpTo="@id/mapFragment" />
         <action
             android:id="@+id/action_userFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
