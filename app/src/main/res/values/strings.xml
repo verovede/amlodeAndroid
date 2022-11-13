@@ -7,7 +7,7 @@
     <string name="fragmento_dea_text">FRAGMENTO DEA</string>
     <string name="fragmento_map_text">FRAGMENTO MAP</string>
     <string name="primeros_auxilios">"Frente a un ataque cardiaco: \n\n
-1. Ayudá a la persona se siente, descanse y trate de mantener la calma. \n\n
+1. Ayuda a que la persona se siente, descanse y trate de mantener la calma. \n\n
 2. Aflojale cualquier prenda de vestir ajustada. \n\n
 3. Preguntale si toma medicamentos para el dolor torácico, como nitroglicerina por una enfermedad cardíaca conocida y ayúdele a tomarlos. \n\n
 4. Si el dolor no desaparece rápidamente con el reposo o al cabo de 3 minutos después de haber tomado la nitroglicerina, solicita ayuda médica urgente. \n\n
@@ -40,7 +40,7 @@
     <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google.\n\n
 Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</string>
     <string name="title_bases_info">Bases y Condiciones</string>
-    <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisiblidad del uso de la aplicación.\n\n
+    <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisibilidad  del uso de la aplicación.\n\n
 
 Me comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.\n\n
 
@@ -74,5 +74,7 @@ Reconozco actuar como colaborador voluntario en situaciones de emergencia siempr
     <string name="bot_section_addDea">Validar Fecha</string>
     <string name="alert_section_addDea">Edad inválida. No podés ingresar.</string>
 
+    <!-- Strings related to deas User screen -->
+    <string name="title_section_deaUser">Mis DEA registrados</string>
 
 </resources>
