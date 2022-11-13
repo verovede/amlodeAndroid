@@ -27,7 +27,8 @@
             app:destination="@id/mapFragment" />
         <action
             android:id="@+id/action_userFragment_to_deaListFragment"
-            app:destination="@id/deaListFragment" />
+            app:destination="@id/deaListFragment"
+            app:popUpTo="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/aidFragment"
