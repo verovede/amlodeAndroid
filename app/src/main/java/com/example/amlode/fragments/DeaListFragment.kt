@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amlode.R
 import com.example.amlode.adapters.DeaListAdapter
 import com.example.amlode.entities.DeaListado
 
-class  DeaListFragment : Fragment() {
+class DeaListFragment : Fragment() {
 
     lateinit var v: View
 
@@ -35,22 +36,30 @@ class  DeaListFragment : Fragment() {
         return v
     }
 
-    override fun onStart(){
+    override fun onStart() {
         super.onStart()
         // recibe por args el mail del usuario
         val deaArgument = DeaListFragmentArgs.fromBundle(requireArguments()).deaList
-        for(dea in deaArgument){
-            deas.add(dea)
+
+        if (!deaArgument.isEmpty()) {
+            for (dea in deaArgument) {
+                deas.add(dea)
+            }
+
+        } else {
+            Toast.makeText(context, "No tenés ningún DEA registrado!", Toast.LENGTH_LONG)
+                .show()
         }
+
 
         Log.d("DEAS ", "${deas}")
         recDeas.setHasFixedSize(true)
         linearlayourManager = LinearLayoutManager(context)
         recDeas.layoutManager = linearlayourManager
-        recDeas.adapter = DeaListAdapter(deas){ x -> onItemClick(x)}
+        recDeas.adapter = DeaListAdapter(deas) { x -> onItemClick(x) }
     }
 
-    fun onItemClick( position : Int) : Boolean{
+    fun onItemClick(position: Int): Boolean {
         //Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
         return true
     }
