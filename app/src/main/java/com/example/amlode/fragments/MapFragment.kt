@@ -19,6 +19,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.MainActivity.Companion.prefs
@@ -146,7 +149,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         if(isLocationPermissionGranted()){
             init()
         }else{
-            requestLocationPermission()
+            Toast.makeText (context,
+                "Se requieren los permisos",
+                Toast.LENGTH_SHORT)
+                .show();
         }
     }
 
@@ -155,30 +161,5 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.isMyLocationEnabled = true
         setUserLocation()
     }
-
-    private fun requestLocationPermission(){
-        if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
-            Toast.makeText(requireContext(), "Acepta los Permisos", Toast.LENGTH_SHORT).show()
-        }else{
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            LOCATION_PERMISSION_REQUEST_CODE -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                init()
-            }else{
-                Toast.makeText(requireContext(), "Acepta los Permisos", Toast.LENGTH_SHORT).show()
-            }
-            else -> {}
-        }
-    }
-
 
 }

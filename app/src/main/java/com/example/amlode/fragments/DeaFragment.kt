@@ -97,6 +97,7 @@ class DeaFragment : Fragment() {
             "${idDea}",
             "dea",
             BooleanValue("Boolean", true),
+            BooleanValue("Boolean", true),
             StringValue("String", "$address"),
             StringValue("String", "$date"),
             StringValue("String", "$latitud"),
