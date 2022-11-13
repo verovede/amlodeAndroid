@@ -26,7 +26,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_black"
         android:text="@string/titulo_aid_fragment"
-        android:textColor="@color/black"
+
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:fontFamily="@font/roboto"
         android:text="@string/primeros_auxilios"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+
         android:textSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
