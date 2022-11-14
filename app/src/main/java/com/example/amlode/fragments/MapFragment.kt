@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -25,6 +26,8 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.example.amlode.*
 import com.example.amlode.MainActivity.Companion.prefs
+import com.example.amlode.api.APIService.Companion.createRouteAPI
+import com.example.amlode.data.RouteResponse
 import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -32,29 +35,32 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MapFragment : Fragment(), OnMapReadyCallback {
-    companion object{
+    companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 
     private lateinit var map: GoogleMap
     private lateinit var markers: MutableList<DeaMarker>
     private lateinit var userLocation: Location
-    private lateinit var viewFragment : View
+    private lateinit var viewFragment: View
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var buttonDea: ImageButton
+    private lateinit var buttonClosest: Button
+    private lateinit var nearestDea: Location
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         viewFragment = inflater.inflate(R.layout.fragment_map, container, false)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
+        fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity().applicationContext)
         userLocation = Location("")
         markers = (activity as MainActivity).getMarkers()
         prefs.saveSizeDeas(markers.size)
@@ -65,20 +71,28 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
-        buttonDea.setOnClickListener{
+        buttonClosest = viewFragment.findViewById(R.id.closest)
 
-            if(!prefs.getEmail().isEmpty()) {
+        buttonClosest.setOnClickListener {
+            createRoute()
+        }
+
+        buttonDea.setOnClickListener {
+
+            if (!prefs.getEmail().isEmpty()) {
                 val action = MapFragmentDirections.actionMapFragmentToDeaFragment()
                 viewFragment.findNavController().navigate(action)
-            }else{
-                val action = MapFragmentDirections.actionMapFragmentToDateFragment("actionLoginFragmentToMapFragment")
+            } else {
+                val action =
+                    MapFragmentDirections.actionMapFragmentToDateFragment("actionLoginFragmentToMapFragment")
                 viewFragment.findNavController().navigate(action)
             }
         }
     }
 
     private fun createFragment() {
-        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment: SupportMapFragment =
+            childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
@@ -90,7 +104,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     //TODO cambiar de acuerdo a los datamodels de fiware cuando este corriendo en la nube
     //setea markadores recibidos de API
-    private fun setMarkers(){
+    private fun setMarkers() {
         val icon = getIcon()
         map.setInfoWindowAdapter(CustomInfoWindowAdapter(requireContext()))
 
@@ -98,8 +112,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Log.w("User Location", "$userLocation")
         Log.w("Map", "$markers")
         val loc = Location("")
-
-        for(dea in markers){
+        var mostClose = Float.MAX_VALUE
+        nearestDea = Location("")
+        for (dea in markers) {
             Log.w("dea ${dea.id}", "${dea.latitude} ${dea.longitude}")
 
             loc.longitude = dea.longitude
@@ -107,7 +122,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
             val distance = loc.distanceTo(userLocation)
             val coordinate = LatLng(dea.latitude, dea.longitude)
-            val meters = String.format("%.2f", (distance / 1000 ))
+            val meters = String.format("%.2f", (distance / 1000))
+
+            if (distance < mostClose) {
+                mostClose = distance
+                nearestDea.longitude = dea.longitude
+                nearestDea.latitude = dea.latitude
+            }
+
             val markerOptions = MarkerOptions().position(coordinate)
                 .title(dea.id)
                 .snippet(dea.address)
@@ -118,48 +140,85 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     //Busca usuario en el mapa y lo ubica. Usar GPS
     @SuppressLint("MissingPermission")
-    private fun setUserLocation(){
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location : Location? ->
-                    if(location != null){
-                        Log.w("LOCATION", "$location")
-                        userLocation.latitude = location.latitude
-                        userLocation.longitude = location.longitude
-                        val coordinates = LatLng(location.latitude, location.longitude)
-                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
-                        setMarkers()
-                    }
+    private fun setUserLocation() {
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    Log.w("LOCATION", "$location")
+                    userLocation.latitude = location.latitude
+                    userLocation.longitude = location.longitude
+                    val coordinates = LatLng(location.latitude, location.longitude)
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15f))
+                    setMarkers()
                 }
+            }
+    }
+
+    private fun createRoute() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = createRouteAPI().getRouteByCar(
+                getString(R.string.routes_api_key),
+                "${userLocation.longitude}, ${userLocation.latitude}",
+                "${nearestDea.longitude}, ${nearestDea.latitude}"
+            )
+            if (call.isSuccessful) {
+                Log.w("call", "$call")
+                drawRoute(call.body())
+            }
+        }
+    }
+
+    private fun drawRoute(routeResponse: RouteResponse?) {
+        val polyLineOptions = PolylineOptions()
+        routeResponse?.features?.first()?.geometry?.coordinates?.forEach {
+            polyLineOptions.add(LatLng(it[1], it[0]))
+        }
+
+        getActivity()?.runOnUiThread(Runnable() {
+            val poly = map.addPolyline(polyLineOptions)
+        })
+
     }
 
     //función que pasa a bitmap las imagenes para el marcador de maps
     private fun getIcon(): BitmapDescriptor {
-        val drawable = ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.puntero, null)
-        drawable?.setBounds(0,0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-        val bitmap: Bitmap = Bitmap.createBitmap(drawable?.intrinsicWidth ?: 0, drawable?.intrinsicHeight ?: 0, Bitmap.Config.ARGB_8888)
+        val drawable =
+            ResourcesCompat.getDrawable(requireActivity().resources, R.drawable.puntero, null)
+        drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+        val bitmap: Bitmap = Bitmap.createBitmap(
+            drawable?.intrinsicWidth ?: 0,
+            drawable?.intrinsicHeight ?: 0,
+            Bitmap.Config.ARGB_8888
+        )
         val canvas = Canvas(bitmap)
         drawable?.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
-    private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
+        requireActivity(),
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
 
-    private fun enableLocation(){
-        if(!::map.isInitialized) return
-        if(isLocationPermissionGranted()){
+    private fun enableLocation() {
+        if (!::map.isInitialized) return
+        if (isLocationPermissionGranted()) {
             init()
-        }else{
-            Toast.makeText (context,
+        } else {
+            Toast.makeText(
+                context,
                 "Se requieren los permisos",
-                Toast.LENGTH_SHORT)
+                Toast.LENGTH_SHORT
+            )
                 .show();
         }
     }
 
     @SuppressLint("MissingPermission")
-    private fun init(){
+    private fun init() {
         map.isMyLocationEnabled = true
         setUserLocation()
     }
 
 }
+
