@@ -12,7 +12,6 @@ import androidx.core.app.ActivityCompat
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
 import com.example.amlode.entities.DeaMarker
-import com.example.amlode.fragments.MapFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import retrofit2.Call
@@ -48,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
                 val response: ArrayList<DeaResponse?>? = (response.body())!!
                 if (response != null) {
                     for(dea in response){
-                        if(dea?.activo?.value == true){
+                        if(dea?.active?.value == true){
                             markers.add(DeaMarker(dea!!.id, dea!!.latitude.value.toDouble(), dea!!.longitude.value.toDouble(), dea!!.active.value, dea!!.datestamp.value, dea!!.address.value))
                         }
                     }
