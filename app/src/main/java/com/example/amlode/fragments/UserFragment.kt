@@ -110,7 +110,6 @@ class UserFragment : Fragment() {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
                         addDeasList(user.deas.value)
-
                     }
                 }
 
@@ -122,25 +121,16 @@ class UserFragment : Fragment() {
 
 
     private fun addDeasList(deasUser: ArrayList<String>) {
-
         val apiDea = APIService.createDeaAPI()
         for (idDea in deasUser) {
-
             apiDea.getDea("v2/entities/${idDea}?type=dea")
                 ?.enqueue(object : Callback<DeaResponse?> {
                     override fun onResponse(call: Call<DeaResponse?>, dea: Response<DeaResponse?>) {
                         val dea: DeaResponse? = (dea.body())!!
-
-                        if (dea != null) {
-                            if (dea.active.value) {
-                                deas.add(
-                                    DeaListado(
-                                        " ${dea.address.value}",
-                                        "${dea.id}",
-                                        "${dea.active}"
-                                    )
-                                )
-                            }
+                        if (dea != null && dea.active.value) {
+                            //if (!verificateDea(idDea)) {
+                                deas.add(DeaListado(" ${dea.address.value}", "${dea.id}"))
+                           // }
                         }
                     }
 
@@ -151,4 +141,13 @@ class UserFragment : Fragment() {
         }
     }
 
+
+    private fun verificateDea(idDea: String): Boolean {
+        for (dea in deas) {
+            if (idDea == dea.id) {
+                return true
+            }
+        }
+        return false
+    }
 }

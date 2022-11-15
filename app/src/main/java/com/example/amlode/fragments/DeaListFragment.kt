@@ -43,7 +43,8 @@ class DeaListFragment : Fragment() {
 
         if (!deaArgument.isEmpty()) {
             for (dea in deaArgument) {
-                deas.add(dea)
+                if (!verificateDea(dea.id)) {
+                deas.add(dea)}
             }
 
         } else {
@@ -62,6 +63,15 @@ class DeaListFragment : Fragment() {
     fun onItemClick(position: Int): Boolean {
         //Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
         return true
+    }
+
+    private fun verificateDea(idDea: String): Boolean {
+        for (dea in deas) {
+            if (idDea == dea.id) {
+                return true
+            }
+        }
+        return false
     }
 
 }
