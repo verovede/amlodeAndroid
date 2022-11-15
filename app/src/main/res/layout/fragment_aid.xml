@@ -8,48 +8,89 @@
     tools:context=".fragments.AidFragment">
 
 
-    <ImageView
-        android:id="@+id/icoAid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/icono_red_aid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/title_aid"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title_aid"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="@string/titulo_aid_fragment"
-
-        android:textSize="16sp"
+    <ScrollView
+        android:layout_width="360sp"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icoAid" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icoAid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/icono_red_aid" />
+
+            <TextView
+                android:id="@+id/title_aid"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/titulo_aid_fragment"
+
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/titulo_aid_steps"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/titulo_aid_steps"
+                android:textColor="@color/colorDea"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/text_aid_steps"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:elegantTextHeight="true"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_aid_steps"
+                android:textAllCaps="false"
+
+                android:textSize="12sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/titulo_aid_primeros_auxilios"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/titulo_aid_primeros_auxilios"
+                android:textColor="@color/colorDea"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/text_aid"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:elegantTextHeight="true"
+                android:fontFamily="@font/roboto"
+                android:text="@string/primeros_auxilios"
+                android:textAllCaps="false"
+
+                android:textSize="12sp"
+                app:autoSizeTextType="uniform" />
 
 
-    <TextView
-
-        android:id="@+id/text_aid"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:elegantTextHeight="true"
-        android:fontFamily="@font/roboto"
-        android:text="@string/primeros_auxilios"
-        android:textAllCaps="false"
-
-        android:textSize="12sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_aid" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonAid"
@@ -63,5 +104,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="599dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
