@@ -6,17 +6,29 @@
     <string name="fragmento_user_text">FRAGMENTO USER</string>
     <string name="fragmento_dea_text">FRAGMENTO DEA</string>
     <string name="fragmento_map_text">FRAGMENTO MAP</string>
-    <string name="primeros_auxilios">"Frente a un ataque cardiaco: \n\n
-1. Ayuda a que la persona se siente, descanse y trate de mantener la calma. \n\n
-2. Aflojale cualquier prenda de vestir ajustada. \n\n
-3. Preguntale si toma medicamentos para el dolor torácico, como nitroglicerina por una enfermedad cardíaca conocida y ayúdele a tomarlos. \n\n
-4. Si el dolor no desaparece rápidamente con el reposo o al cabo de 3 minutos después de haber tomado la nitroglicerina, solicita ayuda médica urgente. \n\n
-5. Si la persona está inconsciente y no reacciona, llame al 911 o al número local de emergencias, luego inicie la RCP. \n\n
-6. Si un bebé o un niño está inconsciente y no reacciona, administre la RCP durante 1 minuto, luego llame al 911 o al número local de emergencias."</string>
+
+    <string name="titulo_aid_fragment">Primeros Auxilios</string>
+
+    <string name="titulo_aid_steps">4 Pasos a seguir</string>
+
+    <string name="text_aid_steps">1. Mientras alguien haceRCP otra persona prepara el DEA.
+        \n\n2. Encendelo y seguí las instrucciones.
+        \n\n3. Si indica que hay que realizar una descarga, primero asegurate de que nadie esté tocando a la víctima. Si vos manejás el DEA, debés alertarlo en voz alta al resto de las personas.
+        \n\n4. Pulsá luego el botón de descarga y seguí las instrucciones del dispositivo hasta que llegue la ayuda médica o la víctima se recupere.
+</string>
+
+    <string name="titulo_aid_primeros_auxilios">Frente a un ataque cardiaco</string>
+
+    <string name="primeros_auxilios">1. Ayuda a que la persona se siente, descanse y trate de mantener la calma.
+        \n\n2. Aflojale cualquier prenda de vestir ajustada.
+        \n\n3. Preguntale si toma medicamentos para el dolor torácico, como nitroglicerina por una enfermedad cardíaca conocida y ayúdele a tomarlos.
+        \n\n4. Si el dolor no desaparece rápidamente con el reposo o al cabo de 3 minutos después de haber tomado la nitroglicerina, solicita ayuda médica urgente.
+        \n\n5. Si la persona está inconsciente y no reacciona, llame al 911 o al número local de emergencias, luego inicie la RCP.
+        \n\n6. Si un bebé o un niño está inconsciente y no reacciona, administre la RCP durante 1 minuto, luego llame al 911 o al número local de emergencias.</string>
     <string name="permiso">AMLODE necesita acceder a tu ubicación para localizar el equipo DEA más cercano</string>
     <string name="titulo_permiso">ACTIVA TU UBICACION</string>
     <string name="permitir_btn">PERMITIR</string>
-    <string name="titulo_aid_fragment">Primeros Auxilios</string>
+
     <string name="llamar_aid_fragment">Llamar al 911</string>
     <string name="volver">Volver</string>
     <!-- Strings related to login -->
@@ -33,18 +45,21 @@
 
     <!-- Strings related to info screen -->
     <string name="title_section_info">Preguntas Frecuentes</string>
-    <string name="title_work_info">¿Cómo funciona?</string>
+    <string name="title_info">¿Qué es un DEA (Desfibrilador Externo Automático)?</string>
+    <string name="text_info">Es un dispositivo electrónico portátil que diagnostica y puede ayudar a restablecer el ritmo cardíaco cuando una persona sufre un paro cardíaco.</string>
+    <string name="title_info_what">¿Qué hace?</string>
+    <string name="text_info_what">La desfibrilación consiste en emitir un impulso de corriente continua al corazón, para tratar que el mismo retome su ritmo normal.</string>
+    <string name="title_info_how">¿Cómo se usa?</string>
+    <string name="text_info_how">En el caso de asistir a una persona con paro cardíaco, si se dispone de un DEA en las inmediaciones, usalo tan pronto como lo tengas a mano.</string>
+
+    <string name="title_AMLODE_info">¿Cómo funciona la AMLODE?</string>
     <string name="title_find_DEA_info">Encontrar DEA mas cercano</string>
-    <string name="text_find_DEA_info">Activando la ubicación en tu disposito vas a poder visualizar el dispositivo DEA más cercano del lugar en el que te encuentres</string>
+    <string name="text_find_DEA_info">Activando la ubicación en tu dispositivo vas a poder visualizar el dispositivo DEA más cercano del lugar en el que te encuentres. No es necesario que estés registrado en la app.
+    </string>
     <string name="title_add_info">Agregar DEA</string>
-    <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google.\n\n
-Desde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</string>
+    <string name="text_add_info">Para agregar un equipo DEA, tenes que estar registrado en AMLODE con tu cuenta de Google. \n\nDesde el mapa, apretar el icono “+” e ingresa con tu cuenta de gmail.</string>
     <string name="title_bases_info">Bases y Condiciones</string>
-    <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisibilidad  del uso de la aplicación.\n\n
-
-Me comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.\n\n
-
-Reconozco actuar como colaborador voluntario en situaciones de emergencia siempre y cuando tenga conocimiento en reanimación cardiopulmonar (RCP) y esté capacitado para utilizar un Dispositivo DEA.</string>
+    <string name="text_bases_info">Como usuario afirmo que la información proporcionada relacionada a los Dispositivos DEA es verdadera, auténtica y fiel a los hechos y declaro saber que cualquier declaración falsa puede ocasionar inadmisibilidad  del uso de la aplicación.\n\nMe comprometo a mantener la confidencialidad con respecto a la información personal/comercial y los datos que debo tener en cuenta para dar de alta los dispositivos.\n\nReconozco actuar como colaborador voluntario en situaciones de emergencia siempre y cuando tenga conocimiento en reanimación cardiopulmonar (RCP) y esté capacitado para utilizar un Dispositivo DEA.</string>
 
     <!-- Strings related to user screen -->
     <string name="title_section_user">Perfil de Usuario</string>
@@ -59,12 +74,8 @@ Reconozco actuar como colaborador voluntario en situaciones de emergencia siempr
 
     <!-- Strings related to loginGoogle screen -->
     <string name="title_section_loginGoogle">Registro de Usuario</string>
-    <string name="text_section_loginGoogle">Falta muy poco para terminar! \n\n
-        Para convertirte en un Colaborador de AMLODE es muy fácil! \n\n
-        Tenes que contar con una cuenta de Google para poder validar tus datos.\n\n
-        Una vez registrado, podrás:\n\n
-        &#8226; Agregar DEAS a la plataforma colaborativa.\n\n
-        &#8226; Acceder a tu perfil de usuario donde  verás tus puntos acumulados.
+    <string name="text_section_loginGoogle">Falta muy poco para terminar! \n\nPara convertirte en un Colaborador de AMLODE es muy fácil! \n\nTenes que contar con una cuenta de Google para poder validar tus datos.\n\n
+        Una vez registrado, podrás:\n\n&#8226; Agregar DEAS a la plataforma colaborativa.\n\n&#8226; Acceder a tu perfil de usuario donde  verás tus puntos acumulados.
         </string>
     <string name="bot_section_loginGoogle">Ingresá con Google</string>
     <string name="routes_api_key" translatable="false">5b3ce3597851110001cf6248f8092fe7fbe140c0a17e931a87c582d9</string>

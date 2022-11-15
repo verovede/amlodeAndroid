@@ -7,116 +7,172 @@
     android:layout_height="match_parent"
     tools:context=".fragments.infoFragment">
 
-    <ImageView
-        android:id="@+id/icoDea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/icono_dea"
-        app:tint="@color/colorDea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/title_aid"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/title_aid"
-        android:layout_width="360dp"
+    <ScrollView
+        android:layout_width="360sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="@string/title_section_info"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icoDea" />
+        tools:layout_editor_absoluteY="0dp">
 
-    <TextView
-        android:id="@+id/title_work_info"
-        android:layout_width="360dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="12dp"
-        android:textSize="16sp"
-        android:fontFamily="@font/roboto_black"
-        android:minHeight="48dp"
-        android:text="@string/title_work_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_aid" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title_find_DEA_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="@string/title_find_DEA_info"
-        android:textColor="@color/colorDea"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_work_info" />
+            <ImageView
+                android:id="@+id/icoDea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/icono_dea"
+                app:tint="@color/colorDea" />
 
-    <TextView
-        android:id="@+id/text_find_DEA_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/text_find_DEA_info"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_find_DEA_info" />
+            <TextView
+                android:id="@+id/title_section_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/title_section_info"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/title_add_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="@string/title_add_info"
-        android:textColor="@color/colorDea"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_find_DEA_info" />
+            <TextView
+                android:id="@+id/title_info"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/title_info"
+                android:textColor="@color/colorDea"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/text_add_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/text_add_info"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_add_info" />
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_info"
+                android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/title_bases_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/roboto_black"
-        android:text="@string/title_bases_info"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_add_info" />
+            <TextView
+                android:id="@+id/title_info_what"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/title_info_what"
+                android:textColor="@color/colorDea"
+                android:textSize="16sp" />
 
-    <TextView
+            <TextView
+                android:id="@+id/text_info_what"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_info_what"
+                android:textSize="12sp" />
 
-        android:id="@+id/text_bases_info"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/text_bases_info"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_bases_info" />
+            <TextView
+                android:id="@+id/title_info_how"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/title_info_how"
+                android:textColor="@color/colorDea"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_info_how"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_info_how"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/title_AMLODE_info"
+                android:layout_width="360dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_black"
+                android:minHeight="48dp"
+                android:text="@string/title_AMLODE_info"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/title_find_DEA_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/title_find_DEA_info"
+                android:textColor="@color/colorDea"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_find_DEA_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_find_DEA_info"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/title_add_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/title_add_info"
+                android:textColor="@color/colorDea"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_add_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_add_info"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/title_bases_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/title_bases_info"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:id="@+id/text_bases_info"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/text_bases_info"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/body_text"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_info_how" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
