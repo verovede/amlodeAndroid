@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserFragment : Fragment() {
-    private lateinit var viewFragment : View
+    private lateinit var viewFragment: View
     lateinit var username: TextView
     lateinit var email: TextView
     lateinit var points: TextView
@@ -30,7 +30,7 @@ class UserFragment : Fragment() {
     lateinit var date: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var logout_user: ImageButton
-    lateinit var bot_deas_user : Button
+    lateinit var bot_deas_user: Button
     private var deas: ArrayList<DeaListado> = ArrayList()
     private val apiUser = APIService.createUserAPI()
 
@@ -48,21 +48,23 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        if(!prefs.getEmail().isEmpty()){
+        if (!prefs.getEmail().isEmpty()) {
             showData()
-        }else{
-            val action = UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
+        } else {
+            val action =
+                UserFragmentDirections.actionUserFragmentToDateFragment("actionLoginFragmentToUserFragment")
             viewFragment.findNavController().navigate(action)
         }
 
         //IR AL LISTADO DE DEAS DEL USUARIO
-        bot_deas_user.setOnClickListener{
-            val action = UserFragmentDirections.actionUserFragmentToDeaListFragment(deas.toTypedArray())
+        bot_deas_user.setOnClickListener {
+            val action =
+                UserFragmentDirections.actionUserFragmentToDeaListFragment(deas.toTypedArray())
             viewFragment.findNavController().navigate(action)
         }
     }
 
-    private fun showData(){
+    private fun showData() {
         username.text = "Nombre y apellido: " + prefs.getName() + " ${prefs.getLastName()}"
         email.text = "Email: " + prefs.getEmail()
         points.setText("${prefs.getPoints()}")
@@ -71,17 +73,17 @@ class UserFragment : Fragment() {
         logOut()
     }
 
-    private fun findById(){
+    private fun findById() {
         username = viewFragment.findViewById(R.id.username)
         email = viewFragment.findViewById(R.id.email)
         date = viewFragment.findViewById(R.id.date_user)
         points = viewFragment.findViewById(R.id.points)
-        photo =  viewFragment.findViewById(R.id.photo)
+        photo = viewFragment.findViewById(R.id.photo)
         logout_user = viewFragment.findViewById(R.id.logout_user)
         bot_deas_user = viewFragment.findViewById(R.id.bot_deas_user)
     }
 
-    private fun logOut(){
+    private fun logOut() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -108,6 +110,7 @@ class UserFragment : Fragment() {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
                         addDeasList(user.deas.value)
+
                     }
                 }
 
@@ -119,18 +122,28 @@ class UserFragment : Fragment() {
 
 
     private fun addDeasList(deasUser: ArrayList<String>) {
+
         val apiDea = APIService.createDeaAPI()
         for (idDea in deasUser) {
+
             apiDea.getDea("v2/entities/${idDea}?type=dea")
                 ?.enqueue(object : Callback<DeaResponse?> {
                     override fun onResponse(call: Call<DeaResponse?>, dea: Response<DeaResponse?>) {
                         val dea: DeaResponse? = (dea.body())!!
+
                         if (dea != null) {
-                            if(!verificateDea(idDea)){
-                                deas.add(DeaListado(" ${dea.address.value}", "${dea.id}"))
+                            if (dea.active.value) {
+                                deas.add(
+                                    DeaListado(
+                                        " ${dea.address.value}",
+                                        "${dea.id}",
+                                        "${dea.active}"
+                                    )
+                                )
                             }
                         }
                     }
+
                     override fun onFailure(call: Call<DeaResponse?>, t: Throwable) {
                         Log.w("FAILURE", "Failure Call Get")
                     }
@@ -138,12 +151,4 @@ class UserFragment : Fragment() {
         }
     }
 
-    private fun verificateDea(idDea: String): Boolean{
-        for(dea in deas){
-            if(idDea == dea.id){
-                return true
-            }
-        }
-        return false
-    }
 }
