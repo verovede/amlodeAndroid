@@ -24,22 +24,27 @@
     <ImageButton
         android:id="@+id/button_dea"
         android:layout_width="60dp"
-        android:layout_height="62dp"
+        android:layout_height="60dp"
         android:background="@null"
         android:src="@drawable/ic_add_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintVertical_bias="0.908" />
 
-    <Button
+    <ImageButton
         android:id="@+id/closest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="636dp" />
+        android:background="@null"
+        android:src="@drawable/ico_sos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

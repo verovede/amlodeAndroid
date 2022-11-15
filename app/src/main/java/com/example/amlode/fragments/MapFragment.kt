@@ -51,7 +51,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var viewFragment: View
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var buttonDea: ImageButton
-    private lateinit var buttonClosest: Button
+    private lateinit var imgButtonClosest: ImageButton
+
     private lateinit var nearestDea: Location
 
     override fun onCreateView(
@@ -71,9 +72,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onStart() {
         super.onStart()
         buttonDea = viewFragment.findViewById(R.id.button_dea)
-        buttonClosest = viewFragment.findViewById(R.id.closest)
 
-        buttonClosest.setOnClickListener {
+        imgButtonClosest = viewFragment.findViewById(R.id.closest)
+
+        imgButtonClosest.setOnClickListener {
             createRoute()
         }
 
