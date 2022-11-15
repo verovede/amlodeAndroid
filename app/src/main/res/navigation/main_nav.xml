@@ -50,7 +50,8 @@
             app:destination="@id/dateFragment" />
         <action
             android:id="@+id/action_mapFragment_to_deaFragment"
-            app:destination="@id/deaFragment" />
+            app:destination="@id/deaFragment"
+            app:popUpTo="@id/main_nav" />
     </fragment>
     <fragment
         android:id="@+id/deaFragment"
