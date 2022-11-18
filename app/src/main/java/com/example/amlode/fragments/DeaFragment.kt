@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
@@ -189,7 +190,10 @@ class DeaFragment : Fragment() {
                     if(!existeDea){
                         createIfIsPossible()
                     }else{
-                        Toast.makeText(context, "Dea ya registrado!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Dea ya registrado!", Toast.LENGTH_LONG).show()
+                        val action =
+                            DeaFragmentDirections.actionDeaFragmentToMapFragment()
+                        viewFragment.findNavController().navigate(action)
                     }
                 }
             }
