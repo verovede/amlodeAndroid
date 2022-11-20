@@ -1,5 +1,8 @@
 package com.example.amlode
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,14 +17,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-open class MainActivity : AppCompatActivity(){
+
+open class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFragment: NavHostFragment
-    private lateinit var markers : MutableList<DeaMarker>
+    private lateinit var markers: MutableList<DeaMarker>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    companion object{
+    companion object {
         lateinit var prefs: SavedPreference
     }
 
@@ -38,11 +42,11 @@ open class MainActivity : AppCompatActivity(){
     }
 
     //funcion publica para que tome el fragmeto map
-    fun getMarkers() : MutableList<DeaMarker>{
+    fun getMarkers(): MutableList<DeaMarker> {
         return this.markers
     }
 
-    private fun callPostPersistent(){
+    private fun callPostPersistent() {
         val apiPersistent = APIService.createPersistent()
         val persistent = createPersistent()
         apiPersistent.postSubscriptions(persistent)?.enqueue(
@@ -50,6 +54,7 @@ open class MainActivity : AppCompatActivity(){
                 override fun onFailure(call: Call<Void>, t: Throwable) {
                     Log.w("FAILURE", "Failure Call Post")
                 }
+
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     Log.w("SUCCESS", "SUCCESS Call Post")
                     Log.w("response ", "$response")
@@ -77,16 +82,23 @@ open class MainActivity : AppCompatActivity(){
         return body
     }
 
+    //CONTROLAR BOTON BACK CELULAR PARA CERRAR LA APP
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(R.string.dialog_salir)
+            .setPositiveButton(R.string.dialog_salir_si,
+                DialogInterface.OnClickListener { dialog, id ->
+                    val intent = Intent(Intent.ACTION_MAIN)
+                    intent.addCategory(Intent.CATEGORY_HOME)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                })
+            .setNegativeButton(R.string.dialog_salir_no,
+                DialogInterface.OnClickListener { dialog, id ->
+                    dialog.dismiss();
+                })
+        // Create the AlertDialog object and return it
+        builder.show()
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-

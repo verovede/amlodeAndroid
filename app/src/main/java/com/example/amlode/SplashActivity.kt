@@ -55,6 +55,7 @@ class SplashActivity : AppCompatActivity() {
                     bundle.putParcelableArrayList("response", markers)
                     intent.putExtras(bundle)
                     startActivity(intent)
+                    finish();
                 }
             }
 
