@@ -3,9 +3,11 @@ package com.example.amlode
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.amlode.api.APIService
@@ -39,6 +41,8 @@ open class MainActivity : AppCompatActivity() {
         bottomNavView = findViewById(R.id.button_bar_menu)
         markers = intent.getParcelableArrayListExtra<DeaMarker>("response") as ArrayList<DeaMarker>
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
+
+        navigate()
     }
 
     //funcion publica para que tome el fragmeto map
@@ -100,5 +104,42 @@ open class MainActivity : AppCompatActivity() {
                 })
         // Create the AlertDialog object and return it
         builder.show()
+    }
+
+    private fun navigate() {
+        bottomNavView.setOnItemSelectedListener{
+            when (it.itemId) {
+                R.id.aidFragment -> {
+                    Navigation.findNavController(this, R.id.nav_host)
+                        .navigate(R.id.aidFragment)
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.infoFragment -> {
+                    Navigation.findNavController(this, R.id.nav_host)
+                        .navigate(R.id.infoFragment)
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.mapFragment -> {
+                    Navigation.findNavController(this, R.id.nav_host)
+                        .navigate(R.id.mapFragment)
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.userFragment -> {
+                    Navigation.findNavController(this, R.id.nav_host)
+                        .navigate(R.id.userFragment)
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.phoneFragment -> {
+                    startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel: 911")));
+                    Log.d("ENTRA?", "ENTRA?")
+                    return@setOnItemSelectedListener true
+                }
+            }
+            false
+        }
     }
 }

@@ -51,8 +51,7 @@
         <action
             android:id="@+id/action_mapFragment_to_deaFragment"
             app:destination="@id/deaFragment"
-            app:popUpTo="@id/mapFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/deaFragment"
@@ -99,11 +98,6 @@
             android:id="@+id/action_loginFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/phoneFragment"
-        android:name="com.example.amlode.fragments.phoneFragment"
-        android:label="fragment_phone"
-        tools:layout="@layout/fragment_phone" />
     <fragment
         android:id="@+id/deaListFragment"
         android:name="com.example.amlode.fragments.DeaListFragment"
