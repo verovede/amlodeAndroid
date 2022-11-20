@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Amlode</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="dialog_salir">¿Estás segur@ que queres salir de AMLODE?</string>
+    <string name="dialog_salir_si">Salir</string>
+    <string name="dialog_salir_no">Volver a AMLODE</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragmento_main_text">PERMITIONS FRAGMENT</string>
     <string name="fragmento_user_text">FRAGMENTO USER</string>
