@@ -31,7 +31,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class DeaFragment : Fragment() {
-
     private lateinit var addDea: Button
     private lateinit var viewFragment: View
     private lateinit var fusedLocationClient: FusedLocationProviderClient

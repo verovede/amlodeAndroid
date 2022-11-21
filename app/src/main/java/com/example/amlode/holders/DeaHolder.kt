@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.amlode.R
 
 class DeaHolder(v: View) : RecyclerView.ViewHolder(v){
-
     private var view: View
-
+    
     init{
         this.view = v
     }

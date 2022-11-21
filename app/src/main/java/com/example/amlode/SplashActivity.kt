@@ -73,7 +73,7 @@ class SplashActivity : AppCompatActivity() {
             Toast.makeText(this, "Acepta los Permisos", Toast.LENGTH_SHORT).show()
         }else{
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                SplashActivity.LOCATION_PERMISSION_REQUEST_CODE
+                LOCATION_PERMISSION_REQUEST_CODE
             )
         }
     }
@@ -85,7 +85,7 @@ class SplashActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         when(requestCode){
-            SplashActivity.LOCATION_PERMISSION_REQUEST_CODE -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            LOCATION_PERMISSION_REQUEST_CODE -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
              callApi()
             }else{
                 Toast.makeText(this, "Acepta los Permisos", Toast.LENGTH_SHORT).show()

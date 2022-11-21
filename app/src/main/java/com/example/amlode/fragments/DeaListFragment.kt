@@ -16,7 +16,6 @@ import com.example.amlode.entities.DeaListado
 class DeaListFragment : Fragment() {
 
     lateinit var v: View
-
     lateinit var recDeas: RecyclerView
     private lateinit var linearlayourManager: LinearLayoutManager
     private lateinit var deaListAdapter: DeaListAdapter
@@ -51,7 +50,6 @@ class DeaListFragment : Fragment() {
             Toast.makeText(context, "No tenés ningún DEA registrado!", Toast.LENGTH_LONG)
                 .show()
         }
-
 
         Log.d("DEAS ", "${deas}")
         recDeas.setHasFixedSize(true)

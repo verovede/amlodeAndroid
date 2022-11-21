@@ -41,7 +41,6 @@ class UserFragment : Fragment() {
         viewFragment = inflater.inflate(R.layout.fragment_user, container, false)
         callUserByEmail()
         findById()
-
         return viewFragment
     }
 
@@ -109,6 +108,7 @@ class UserFragment : Fragment() {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
+                        prefs.savePoints(user.points.value.toInt())
                         addDeasList(user.deas.value)
                     }
                 }
@@ -128,9 +128,7 @@ class UserFragment : Fragment() {
                     override fun onResponse(call: Call<DeaResponse?>, dea: Response<DeaResponse?>) {
                         val dea: DeaResponse? = (dea.body())!!
                         if (dea != null && dea.active.value) {
-                            //if (!verificateDea(idDea)) {
                                 deas.add(DeaListado(" ${dea.address.value}", "${dea.id}"))
-                           // }
                         }
                     }
 
@@ -139,15 +137,5 @@ class UserFragment : Fragment() {
                     }
                 })
         }
-    }
-
-
-    private fun verificateDea(idDea: String): Boolean {
-        for (dea in deas) {
-            if (idDea == dea.id) {
-                return true
-            }
-        }
-        return false
     }
 }

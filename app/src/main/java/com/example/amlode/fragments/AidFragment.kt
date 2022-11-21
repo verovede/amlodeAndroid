@@ -10,7 +10,6 @@ import android.widget.Button
 import com.example.amlode.R
 import android.net.Uri;
 
-
 class AidFragment : Fragment() {
     lateinit var viewFragment: View
     lateinit var buttonCall: Button
