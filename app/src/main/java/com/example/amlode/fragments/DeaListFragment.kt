@@ -45,7 +45,6 @@ class DeaListFragment : Fragment() {
                 if (!verificateDea(dea.id)) {
                 deas.add(dea)}
             }
-
         } else {
             Toast.makeText(context, "No tenés ningún DEA registrado!", Toast.LENGTH_LONG)
                 .show()

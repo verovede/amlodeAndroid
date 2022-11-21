@@ -22,20 +22,14 @@ open class MainActivity : AppCompatActivity() {
     private lateinit var markers: MutableList<DeaMarker>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    companion object {
-        lateinit var prefs: SavedPreference
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefs = SavedPreference(this)
         setContentView(R.layout.activity_main)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         bottomNavView = findViewById(R.id.button_bar_menu)
         markers = intent.getParcelableArrayListExtra<DeaMarker>("response") as ArrayList<DeaMarker>
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
-
         navigate()
     }
 

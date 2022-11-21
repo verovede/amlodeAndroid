@@ -5,12 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
+import com.example.amlode.data.UserResponse
 import com.example.amlode.entities.DeaMarker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -19,20 +21,27 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val markers = ArrayList<DeaMarker>()
+    private val apiUser = APIService.createUserAPI()
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+        lateinit var prefs: SavedPreference
     }
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val markers = ArrayList<DeaMarker>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        prefs = SavedPreference(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.applicationContext)
 
         intent = Intent(this, MainActivity::class.java)
         requestLocationPermission()
+
+        if(prefs.getEmail() != null){
+            callUserByEmail()
+        }
     }
 
     //llama api realiza un intent hacia main (que pide permisos y carga hacia maps)
@@ -94,4 +103,20 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun callUserByEmail() {
+        apiUser.getUser("v2/entities/${prefs.getEmail()}?type=user")
+            ?.enqueue(object : Callback<UserResponse?> {
+                override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
+                    val user: UserResponse? = (user.body())!!
+                    if (user != null) {
+                        prefs.savePoints(user.points.value.toInt())
+                    }
+                }
+
+                override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
+                    Log.w("FAILURE", "Failure Call Get")
+                }
+            })
+    }
 }

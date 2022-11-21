@@ -8,7 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
-import com.example.amlode.MainActivity.Companion.prefs
+import com.example.amlode.SplashActivity.Companion.prefs
 import com.example.amlode.api.APIService
 import com.example.amlode.data.DeaResponse
 import com.example.amlode.data.UserResponse
@@ -108,7 +108,6 @@ class UserFragment : Fragment() {
                 override fun onResponse(call: Call<UserResponse?>, user: Response<UserResponse?>) {
                     val user: UserResponse? = (user.body())!!
                     if (user != null) {
-                        prefs.savePoints(user.points.value.toInt())
                         addDeasList(user.deas.value)
                     }
                 }

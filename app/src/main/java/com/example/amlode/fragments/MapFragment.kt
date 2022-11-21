@@ -18,7 +18,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.*
-import com.example.amlode.MainActivity.Companion.prefs
+import com.example.amlode.SplashActivity.Companion.prefs
 import com.example.amlode.api.APIService.Companion.createRouteAPI
 import com.example.amlode.data.RouteResponse
 import com.example.amlode.entities.DeaMarker

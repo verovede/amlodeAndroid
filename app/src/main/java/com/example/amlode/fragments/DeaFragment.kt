@@ -15,9 +15,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
 import com.example.amlode.SplashActivity
+import com.example.amlode.SplashActivity.Companion.prefs
 import com.example.amlode.api.APIService
 import com.example.amlode.data.*
 import com.google.android.gms.location.FusedLocationProviderClient

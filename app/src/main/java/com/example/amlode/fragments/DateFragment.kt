@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.amlode.DatePickerFragment
-import com.example.amlode.MainActivity.Companion.prefs
 import com.example.amlode.R
+import com.example.amlode.SplashActivity.Companion.prefs
 import java.time.LocalDate
 import java.time.Period
 
